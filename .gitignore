@@ -4,3 +4,4 @@ dist
 .env
 v1.0
 .DS_Store
+.env.local
