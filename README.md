@@ -125,7 +125,6 @@ This project is open source and available under the [MIT License](LICENSE).
 
 - **GitHub**: [@DivyanshM30](https://github.com/DivyanshM30)
 - **LinkedIn**: [DivyanshM30](https://linkedin.com/in/DivyanshM30)
-- **LeetCode**: [DivyanshM30](https://leetcode.com/DivyanshM30)
 - **Email**: divyanshm.code@gmail.com
 
 ---
