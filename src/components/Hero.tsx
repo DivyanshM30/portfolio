@@ -28,13 +28,12 @@ export default function Hero() {
                         </div>
                         <div className="hero-image">
                             <Image
-                                src={process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL || "/profile.png"}
+                                src="/profile.png"
                                 alt="Divyansh Mishra"
                                 width={200}
                                 height={200}
                                 className="profile-photo"
                                 priority
-                                unoptimized={!!process.env.NEXT_PUBLIC_PROFILE_IMAGE_URL}
                             />
                         </div>
                     </div>

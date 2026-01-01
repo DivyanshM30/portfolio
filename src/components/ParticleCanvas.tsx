@@ -131,7 +131,7 @@ export default function ParticleCanvas() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 150) {
-                        const baseOpacity = isDark ? 0.2 : 0.3;
+                        const baseOpacity = isDark ? 0.6 : 0.7;
                         const opacity = (1 - distance / 150) * baseOpacity;
                         ctx.strokeStyle = mouseLineColor;
                         ctx.globalAlpha = opacity;
