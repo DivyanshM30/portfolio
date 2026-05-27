@@ -52,9 +52,9 @@ export default function Projects() {
                         <div className="project-tech">
                             <span className="tech-tag">Next.js</span>
                             <span className="tech-tag">TypeScript</span>
-                            <span className="tech-tag">Google Gemini API</span>
-                            <span className="tech-tag">Tailwind CSS</span>
-                            <span className="tech-tag">Document Parsing</span>
+                            <span className="tech-tag">Gemini API (JSON Mode)</span>
+                            <span className="tech-tag">Framer Motion</span>
+                            <span className="tech-tag">PDF.js / LangChain</span>
                         </div>
                         <div className="project-links">
                             <a
@@ -89,9 +89,9 @@ export default function Projects() {
                         <div className="project-tech">
                             <span className="tech-tag">Next.js</span>
                             <span className="tech-tag">TypeScript</span>
-                            <span className="tech-tag">Tailwind CSS</span>
-                            <span className="tech-tag">Supabase</span>
-                            <span className="tech-tag">Aesthetic UI</span>
+                            <span className="tech-tag">Supabase (Auth &amp; DB)</span>
+                            <span className="tech-tag">Zustand</span>
+                            <span className="tech-tag">Framer Motion</span>
                         </div>
                         <div className="project-links">
                             <a
