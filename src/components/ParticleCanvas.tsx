@@ -164,6 +164,8 @@ export default function ParticleCanvas() {
         [theme]
     );
 
+    const animateRef = useRef<() => void>(() => {});
+
     const animate = useCallback(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -173,8 +175,12 @@ export default function ParticleCanvas() {
 
         update(canvas.width, canvas.height);
         draw(ctx, canvas.width, canvas.height);
-        animationIdRef.current = requestAnimationFrame(animate);
+        animationIdRef.current = requestAnimationFrame(animateRef.current);
     }, [update, draw]);
+
+    useEffect(() => {
+        animateRef.current = animate;
+    }, [animate]);
 
     // Initialize and start animation
     useEffect(() => {

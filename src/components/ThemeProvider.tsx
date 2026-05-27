@@ -33,17 +33,17 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         const savedTheme = localStorage.getItem('theme') as Theme | null;
 
         if (savedTheme) {
-            setTheme(savedTheme);
+            setTimeout(() => setTheme(savedTheme), 0);
             document.documentElement.dataset.theme = savedTheme;
         } else {
             // Check system preference
             const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const initialTheme = prefersDark ? 'dark' : 'light';
-            setTheme(initialTheme);
+            setTimeout(() => setTheme(initialTheme), 0);
             // Don't set data-theme if using system preference - CSS handles it
         }
 
-        setMounted(true);
+        setTimeout(() => setMounted(true), 0);
     }, []);
 
     // Listen for system preference changes

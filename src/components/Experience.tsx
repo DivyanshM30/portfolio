@@ -11,10 +11,7 @@ export default function Experience() {
                             <div className="experience-company">IBM watsonx.ai</div>
                             <div className="experience-date">May 2025 - July 2025</div>
                             <p className="experience-description">
-                                Earned a certification from IBM in Generative Artificial Intelligence while gaining
-                                hands-on experience in prompt engineering, LLMs, and AI-powered application
-                                development using Watsonx, Python, and modern NLP techniques. Strengthened ability
-                                to design and deploy generative AI solutions in real-world projects.
+                                Earned a professional certification in Generative Artificial Intelligence from IBM. Gained hands-on proficiency in prompt engineering, LLM integration, and AI application development utilizing IBM Watsonx, Python, and advanced NLP toolkits to design robust, RAG-based systems.
                             </p>
                         </div>
                     </div>
@@ -26,10 +23,7 @@ export default function Experience() {
                             <div className="experience-company">Codeforces • LeetCode</div>
                             <div className="experience-date">2023 - Present</div>
                             <p className="experience-description">
-                                Solved 150+ problems on LeetCode with a contest rating of 1400+. Actively
-                                participate in weekly contests on CodeChef and practice regularly on Codeforces.
-                                Built a strong foundation in data structures and algorithms through consistent
-                                problem-solving.
+                                Solved over 500+ problems across platforms (LeetCode, CodeChef, Codeforces) with a LeetCode contest rating of 1400+. Developed a strong algorithmic analytical mindset, mastery over complex data structures, and optimized coding speed under pressure.
                             </p>
                         </div>
                     </div>
@@ -41,11 +35,7 @@ export default function Experience() {
                             <div className="experience-company">MIC</div>
                             <div className="experience-date">July 2024 - June 2025</div>
                             <p className="experience-description">
-                                As a member of the Microsoft Innovations Club, I was part of the development team
-                                during my tenure. While the club&apos;s activities were limited, I contributed to the
-                                organization of an event during Vibrance and completed five foundational courses on
-                                the Microsoft Learn platform, covering core concepts in cloud computing and software
-                                development.
+                                Contributed to system design discussions and event coordination as part of the student development board. Co-organized tech events during the Vibrance festival and completed 5 Microsoft Learn courses in cloud computing architectures and Azure fundamentals.
                             </p>
                         </div>
                     </div>

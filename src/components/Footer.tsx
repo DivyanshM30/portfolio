@@ -39,7 +39,7 @@ export default function Footer() {
                         <i className="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p>&copy; 2025 Divyansh Mishra. All rights reserved. | Made with ❤️</p>
+                <p>&copy; {new Date().getFullYear()} Divyansh Mishra. All rights reserved. | Made with ❤️</p>
             </div>
         </footer>
     );

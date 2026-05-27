@@ -24,22 +24,13 @@ export default function About() {
                     </div>
                     <div className="about-text">
                         <p>
-                            I&apos;m a Computer Science undergraduate with a solid foundation in problem-solving,
-                            data structures, and full-stack development. Over the past few years, I&apos;ve built
-                            real-world applications including a desktop-based Digital Wellbeing Tracker with ML
-                            integration, reflecting my passion for solving meaningful problems through code.
+                            I am a Computer Science undergraduate at Vellore Institute of Technology with a passion for software engineering and system architecture. I specialize in bridging the gap between complex backend logic and intuitive frontend interfaces, building software solutions that are both highly performant and user-centric.
                         </p>
                         <p>
-                            I specialize in modern web technologies like React, Node.js, and Python, and I&apos;m
-                            constantly refining my skills by solving 500+ DSA problems across platforms like
-                            LeetCode and Codeforces. I aim to secure SDE internships at product-based companies
-                            where I can build scalable, impactful software used by real users.
+                            My technical toolkit centers around modern web technologies, including React, Node.js, and Python. To support my development work with robust computational efficiency, I actively practice competitive programming, having solved over 500+ algorithmic problems across LeetCode and Codeforces. This structured analytical training enables me to write clean, optimized, and scalable code.
                         </p>
                         <p>
-                            Outside of academics, I spend time building personal projects, exploring new
-                            technologies, and strengthening my problem-solving skills. I enjoy building side
-                            projects, staying up-to-date with industry trends in software development, AI, and
-                            cloud technologies. I also like playing chess in my free time.
+                            Always seeking to stay at the forefront of technology, I recently earned an IBM Certification in Generative AI, building core competencies in prompt engineering, LLM integrations, and RAG architectures. I am actively seeking SDE internship opportunities at forward-thinking companies where I can contribute to shipping production-ready systems.
                         </p>
                     </div>
                 </div>

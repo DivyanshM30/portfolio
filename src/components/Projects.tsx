@@ -10,9 +10,8 @@ export default function Projects() {
                             <h3 className="project-title">Digital Wellbeing Tracker</h3>
                         </div>
                         <p className="project-description">
-                            A desktop application that tracks screen time and app usage in real-time, offering
-                            visual insights and usage patterns. Utilizes K-Means clustering to identify unhealthy
-                            digital behavior and promote mindful tech habits through data-driven feedback.
+                            An intelligent, desktop-based productivity application that logs real-time system and application activity.
+                            Integrated a <strong>K-Means clustering algorithm</strong> using Python (scikit-learn) to categorize digital activity profiles and detect addictive behavior patterns, generating data-driven feedback to encourage mindful technology usage.
                         </p>
                         <div className="project-tech">
                             <span className="tech-tag">Python</span>
@@ -44,49 +43,68 @@ export default function Projects() {
                     <div className="project-card">
                         <div className="project-header">
                             <div className="project-number">02</div>
-                            <h3 className="project-title">Blockchain-based Decentralized VPN</h3>
+                            <h3 className="project-title">QuizForge</h3>
                         </div>
                         <p className="project-description">
-                            A decentralized VPN leveraging <strong>blockchain technology</strong> for secure,
-                            anonymous, and censorship-resistant browsing. Uses cryptographic encryption to ensure
-                            data privacy while eliminating central points of failure, providing trustless
-                            peer-to-peer connectivity.
+                            An AI-powered assessment platform that transforms study materials such as PDFs, PPTs, and documents into topic-wise timed MCQ quizzes with instant evaluation and detailed explanations.
+                            Built an end-to-end document processing pipeline for text extraction and AI-driven question generation using the <strong>Google Gemini API</strong>, with configurable settings, real-time scoring, performance analytics, and revision-focused feedback to create a personalized prep experience.
                         </p>
                         <div className="project-tech">
-                            <span className="tech-tag">Blockchain</span>
-                            <span className="tech-tag">Python</span>
-                            <span className="tech-tag">Smart Contracts</span>
-                            <span className="tech-tag">Encryption</span>
+                            <span className="tech-tag">Next.js</span>
+                            <span className="tech-tag">TypeScript</span>
+                            <span className="tech-tag">Google Gemini API</span>
+                            <span className="tech-tag">Tailwind CSS</span>
+                            <span className="tech-tag">Document Parsing</span>
                         </div>
                         <div className="project-links">
-                            <span className="project-link" style={{ opacity: 0.5, cursor: 'default' }}>
-                                <span>Coming Soon</span>
-                                <i className="fas fa-clock"></i>
-                            </span>
+                            <a
+                                href="https://quiz-forge-v1.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                <span>View Project</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </a>
+                            <a
+                                href="https://github.com/DivyanshM30/QuizForge"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link secondary"
+                            >
+                                <i className="fab fa-github"></i>
+                            </a>
                         </div>
                     </div>
 
                     <div className="project-card">
                         <div className="project-header">
                             <div className="project-number">03</div>
-                            <h3 className="project-title">Real-Time AI Based News Summarizer Web App</h3>
+                            <h3 className="project-title">MindPalette</h3>
                         </div>
                         <p className="project-description">
-                            Built a responsive web app that generates concise real-time news summaries using{' '}
-                            <strong>Google Gemini API</strong>. Includes category-based filters (Tech, Politics,
-                            Sports) for personalized feeds. Implemented a <strong>Flask backend</strong> for API
-                            calls, user flow, and error handling, while optimizing API usage for scalability and
-                            token efficiency.
+                            A beautifully designed, cloud-synced mood tracking application that turns daily feelings into an expressive visual story.
+                            Instead of logging emotions in traditional spreadsheets, MindPalette transforms your year into a gentle, aesthetic grid canvas—where each day becomes a brushstroke of color, emotion, and personal reflection.
                         </p>
                         <div className="project-tech">
-                            <span className="tech-tag">Python</span>
-                            <span className="tech-tag">Flask</span>
-                            <span className="tech-tag">Google Gemini API</span>
-                            <span className="tech-tag">NLP</span>
+                            <span className="tech-tag">Next.js</span>
+                            <span className="tech-tag">TypeScript</span>
+                            <span className="tech-tag">Tailwind CSS</span>
+                            <span className="tech-tag">Supabase</span>
+                            <span className="tech-tag">Aesthetic UI</span>
                         </div>
                         <div className="project-links">
                             <a
-                                href="https://github.com/DivyanshM30/summarizer_ai"
+                                href="https://themindpalette.vercel.app/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link"
+                            >
+                                <span>View Project</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </a>
+                            <a
+                                href="https://github.com/DivyanshM30/mindpalette"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="project-link secondary"
@@ -99,13 +117,34 @@ export default function Projects() {
                     <div className="project-card">
                         <div className="project-header">
                             <div className="project-number">04</div>
+                            <h3 className="project-title">Blockchain-based Decentralized VPN</h3>
+                        </div>
+                        <p className="project-description">
+                            A secure, decentralized networking protocol leveraging <strong>blockchain technology</strong> for censorship-resistant browsing.
+                            Utilizes peer-to-peer architecture and robust cryptographic encryption to eliminate central single-points-of-failure, ensuring absolute user privacy and trustless node connectivity.
+                        </p>
+                        <div className="project-tech">
+                            <span className="tech-tag">Blockchain</span>
+                            <span className="tech-tag">Python</span>
+                            <span className="tech-tag">Smart Contracts</span>
+                            <span className="tech-tag">Encryption</span>
+                        </div>
+                        <div className="project-links">
+                            <span className="project-link" style={{ opacity: 0.5, cursor: 'default' }}>
+                                <span>Private Repository</span>
+                                <i className="fas fa-lock"></i>
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="project-card">
+                        <div className="project-header">
+                            <div className="project-number">05</div>
                             <h3 className="project-title">Smart Route</h3>
                         </div>
                         <p className="project-description">
-                            A cloud-based intelligent routing system designed to suggest optimal travel routes by
-                            considering real-time traffic data, shortest paths, and dynamic conditions. Integrated{' '}
-                            <strong>Maps API</strong> with AI-powered optimization algorithms for smarter
-                            navigation and faster decision-making.
+                            A cloud-native navigation engine that computes optimized travel routes by evaluating real-time traffic feeds and pathfinding algorithms.
+                            Integrated <strong>Google Maps API</strong> with graph optimization algorithms, deploying the service to <strong>AWS</strong> to ensure scalable, low-latency updates for routing calculations.
                         </p>
                         <div className="project-tech">
                             <span className="tech-tag">Python</span>
@@ -116,6 +155,33 @@ export default function Projects() {
                         <div className="project-links">
                             <a
                                 href="https://github.com/DivyanshM30/smartroute"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="project-link secondary"
+                            >
+                                <i className="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div className="project-card">
+                        <div className="project-header">
+                            <div className="project-number">06</div>
+                            <h3 className="project-title">Real-Time AI Based News Summarizer Web App</h3>
+                        </div>
+                        <p className="project-description">
+                            A full-stack, responsive web application that fetches and condenses global news into bulleted summaries using the <strong>Google Gemini Pro API</strong>.
+                            Designed a modular <strong>Flask backend API</strong> and integrated smart token optimization strategies, reducing query latency and API overhead. Added customized category filters (Tech, Business, Science) for personalized user feeds.
+                        </p>
+                        <div className="project-tech">
+                            <span className="tech-tag">Python</span>
+                            <span className="tech-tag">Flask</span>
+                            <span className="tech-tag">Google Gemini API</span>
+                            <span className="tech-tag">NLP</span>
+                        </div>
+                        <div className="project-links">
+                            <a
+                                href="https://github.com/DivyanshM30/summarizer_ai"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="project-link secondary"

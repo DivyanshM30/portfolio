@@ -20,10 +20,10 @@ export default function Hero() {
                                 <div className="hero-badge">Resume</div>
                             </a>
                             <h1>Divyansh Mishra</h1>
-                            <p className="subtitle">Developer | Problem Solver</p>
+                            <h2 className="subtitle">Software Engineer &amp; Full-Stack Developer</h2>
                             <p className="description">
-                                B.Tech Computer Science student passionate about building scalable software solutions.
-                                Experienced in full-stack development, algorithms, and problem-solving.
+                                B.Tech Computer Science student specializing in building scalable full-stack applications.
+                                Backed by a strong foundation in Data Structures &amp; Algorithms (500+ solved) and hands-on experience in modern web technologies.
                             </p>
                         </div>
                         <div className="hero-image">
