@@ -52,8 +52,8 @@ export default function Projects() {
                         <div className="project-tech">
                             <span className="tech-tag">Next.js</span>
                             <span className="tech-tag">TypeScript</span>
-                            <span className="tech-tag">Gemini API (JSON Mode)</span>
-                            <span className="tech-tag">Framer Motion</span>
+                            <span className="tech-tag">Gemini API</span>
+                            <span className="tech-tag">Document Parsing</span>
                             <span className="tech-tag">PDF.js / LangChain</span>
                         </div>
                         <div className="project-links">
