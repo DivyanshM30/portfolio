@@ -19,6 +19,20 @@ export default function Experience() {
                     <div className="timeline-item">
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
+                            <h3 className="experience-title">AWS APAC Solutions Architecture Virtual Experience Program</h3>
+                            <div className="experience-company">Completed on Forage - Hosted by AWS APAC</div>
+                            <div className="experience-date">July 2025</div>
+                            <ul className="experience-description" style={{ paddingLeft: '1.2rem', margin: 0 }}>
+                                <li>Designed a scalable architecture using AWS Elastic Beanstalk to support a React + Flask web app under increasing user load</li>
+                                <li>Addressed issues like slow response times, server crashes, and deployment downtime on a single EC2 instance</li>
+                                <li>Explained architectural improvements and cost breakdown in plain language to a simulated client</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div className="timeline-item">
+                        <div className="timeline-dot"></div>
+                        <div className="timeline-content">
                             <h3 className="experience-title">Competitive Programming</h3>
                             <div className="experience-company">Codeforces • LeetCode</div>
                             <div className="experience-date">2023 - Present</div>

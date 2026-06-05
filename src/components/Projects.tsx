@@ -1,3 +1,4 @@
+import Link from 'next/link';
 export default function Projects() {
     return (
         <section className="section projects" id="projects">
@@ -26,7 +27,7 @@ export default function Projects() {
                                 rel="noopener noreferrer"
                                 className="project-link"
                             >
-                                <span>View Project</span>
+                                <span>Live Demo</span>
                                 <i className="fas fa-arrow-right"></i>
                             </a>
                             <a
@@ -37,6 +38,11 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
+                        
+                            <Link href={`/projects/digital-wellbeing-tracker`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
 
@@ -63,7 +69,7 @@ export default function Projects() {
                                 rel="noopener noreferrer"
                                 className="project-link"
                             >
-                                <span>View Project</span>
+                                <span>Live Demo</span>
                                 <i className="fas fa-arrow-right"></i>
                             </a>
                             <a
@@ -74,6 +80,11 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
+                        
+                            <Link href={`/projects/quizforge`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
 
@@ -100,7 +111,7 @@ export default function Projects() {
                                 rel="noopener noreferrer"
                                 className="project-link"
                             >
-                                <span>View Project</span>
+                                <span>Live Demo</span>
                                 <i className="fas fa-arrow-right"></i>
                             </a>
                             <a
@@ -111,6 +122,11 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
+                        
+                            <Link href={`/projects/mindpalette`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
 
@@ -134,6 +150,11 @@ export default function Projects() {
                                 <span>Private Repository</span>
                                 <i className="fas fa-lock"></i>
                             </span>
+                        
+                            <Link href={`/projects/blockchain-vpn`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
 
@@ -161,6 +182,11 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
+                        
+                            <Link href={`/projects/smart-route`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
 
@@ -188,6 +214,11 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
+                        
+                            <Link href={`/projects/ai-news-summarizer`} className="project-link details">
+                                <span>Details</span>
+                                <i className="fas fa-arrow-right"></i>
+                            </Link>
                         </div>
                     </div>
                 </div>
