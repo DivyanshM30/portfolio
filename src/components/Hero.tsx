@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import ParticleCanvas from './ParticleCanvas';
+import CountUp from './CountUp';
 
 export default function Hero() {
     return (
@@ -41,15 +42,15 @@ export default function Hero() {
                     </div>
                     <div className="hero-stats hero-stats-anim">
                         <div className="hero-stat">
-                            <span className="stat-value">500+</span>
+                            <span className="stat-value"><CountUp end={500} suffix="+" /></span>
                             <span className="stat-label">DSA Problems</span>
                         </div>
                         <div className="hero-stat">
-                            <span className="stat-value">15+</span>
+                            <span className="stat-value"><CountUp end={15} suffix="+" /></span>
                             <span className="stat-label">Projects</span>
                         </div>
                         <div className="hero-stat">
-                            <span className="stat-value">3+</span>
+                            <span className="stat-value"><CountUp end={3} suffix="+" /></span>
                             <span className="stat-label">Years Coding</span>
                         </div>
                     </div>

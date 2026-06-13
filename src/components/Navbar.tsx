@@ -1,24 +1,57 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTheme } from './ThemeProvider';
+
+const NAV_SECTIONS = ['home', 'about', 'projects', 'skills', 'experience', 'contact'];
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+    const [activeSection, setActiveSection] = useState('home');
+    const [toggling, setToggling] = useState(false);
     const { theme, toggleTheme } = useTheme();
 
     // Scroll effect - adds 'scrolled' class on scroll > 100px
+    // Also tracks which section is currently in view
     useEffect(() => {
+        let ticking = false;
+
+        const updateActiveSection = () => {
+            setScrolled(window.scrollY > 100);
+
+            // Edge case: scrolled to very bottom → contact
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 50) {
+                setActiveSection('contact');
+                ticking = false;
+                return;
+            }
+
+            // Use getBoundingClientRect which is unaffected by CSS transforms
+            let current = 'home';
+            for (const id of NAV_SECTIONS) {
+                const section = document.getElementById(id);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    // Section is "active" when its top is above 40% of viewport
+                    if (rect.top <= window.innerHeight * 0.4 && rect.bottom > 0) {
+                        current = id;
+                    }
+                }
+            }
+
+            setActiveSection(current);
+            ticking = false;
+        };
+
         const handleScroll = () => {
-            if (window.scrollY > 100) {
-                setScrolled(true);
-            } else {
-                setScrolled(false);
+            if (!ticking) {
+                ticking = true;
+                requestAnimationFrame(updateActiveSection);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -52,6 +85,14 @@ export default function Navbar() {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
+    // Theme toggle with spin animation
+    const handleToggleTheme = useCallback(() => {
+        setToggling(true);
+        toggleTheme();
+        // Remove toggling class after animation completes
+        setTimeout(() => setToggling(false), 400);
+    }, [toggleTheme]);
+
     return (
         <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
             <div className="nav-container">
@@ -59,42 +100,23 @@ export default function Navbar() {
                     Divyansh Mishra
                 </a>
                 <ul className={`nav-links${mobileMenuOpen ? ' mobile-open' : ''}`}>
-                    <li>
-                        <a href="#home" onClick={(e) => handleNavClick(e, '#home')}>
-                            Home
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#about" onClick={(e) => handleNavClick(e, '#about')}>
-                            About
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#projects" onClick={(e) => handleNavClick(e, '#projects')}>
-                            Projects
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#skills" onClick={(e) => handleNavClick(e, '#skills')}>
-                            Skills
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#experience" onClick={(e) => handleNavClick(e, '#experience')}>
-                            Experience
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')}>
-                            Contact
-                        </a>
-                    </li>
+                    {NAV_SECTIONS.map((section) => (
+                        <li key={section}>
+                            <a
+                                href={`#${section}`}
+                                className={activeSection === section ? 'active' : ''}
+                                onClick={(e) => handleNavClick(e, `#${section}`)}
+                            >
+                                {section.charAt(0).toUpperCase() + section.slice(1)}
+                            </a>
+                        </li>
+                    ))}
                 </ul>
                 <button
-                    className="theme-toggle"
+                    className={`theme-toggle${toggling ? ' toggling' : ''}`}
                     id="themeToggle"
                     title="Toggle dark mode"
-                    onClick={toggleTheme}
+                    onClick={handleToggleTheme}
                 >
                     <i className={theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}></i>
                 </button>

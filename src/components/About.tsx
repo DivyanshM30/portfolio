@@ -1,3 +1,7 @@
+'use client';
+
+import CountUp from './CountUp';
+
 export default function About() {
     return (
         <section className="section about" id="about">
@@ -6,19 +10,19 @@ export default function About() {
                 <div className="about-content">
                     <div className="about-stats">
                         <div className="stat-card stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
-                            <div className="stat-number">15+</div>
+                            <div className="stat-number"><CountUp end={15} suffix="+" /></div>
                             <div className="stat-label">Projects Completed</div>
                         </div>
                         <div className="stat-card stagger-item" style={{ '--stagger-index': 1 } as React.CSSProperties}>
-                            <div className="stat-number">500+</div>
+                            <div className="stat-number"><CountUp end={500} suffix="+" /></div>
                             <div className="stat-label">DSA Problems Solved</div>
                         </div>
                         <div className="stat-card stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
-                            <div className="stat-number">8.5</div>
+                            <div className="stat-number"><CountUp end={8} suffix=".5" /></div>
                             <div className="stat-label">CGPA</div>
                         </div>
                         <div className="stat-card stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
-                            <div className="stat-number">3+</div>
+                            <div className="stat-number"><CountUp end={3} suffix="+" /></div>
                             <div className="stat-label">Years Coding</div>
                         </div>
                     </div>

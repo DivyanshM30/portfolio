@@ -135,6 +135,28 @@ h6,
   font-weight: 400;
   font-size: 0.95rem;
   transition: color 0.2s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--text-primary);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
 .nav-links a:hover {
@@ -163,6 +185,11 @@ h6,
 
 .theme-toggle i {
   font-size: 0.9rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.theme-toggle.toggling i {
+  transform: rotate(360deg) scale(1.15);
 }
 
 .mobile-menu {
@@ -304,12 +331,21 @@ h6,
   border-radius: 50%;
   border: 3px solid var(--border-color);
   object-fit: cover;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
 }
 
 .profile-photo:hover {
   border-color: var(--text-primary);
   transform: scale(1.05);
+  box-shadow: 0 0 24px 4px rgba(255, 255, 255, 0.15),
+              0 0 48px 8px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="light"] .profile-photo:hover,
+:root:not([data-theme="dark"]) .profile-photo:hover {
+  box-shadow: 0 0 24px 4px rgba(0, 0, 0, 0.12),
+              0 0 48px 8px rgba(0, 0, 0, 0.04);
 }
 
 @media (max-width: 768px) {
@@ -580,21 +616,20 @@ h6,
 
 .project-link.details {
   margin-left: auto;
-  background: var(--text-primary);
-  color: var(--bg-light) !important;
+  background: transparent;
+  color: var(--text-primary) !important;
   padding: 0.5rem 1.1rem;
   border-radius: 6px;
-  border: 1px solid var(--text-primary);
-  border-bottom: 1px solid var(--text-primary);
+  border: 1px solid var(--border-color);
   font-weight: 500;
   font-size: 0.9rem;
+  transition: all 0.3s ease;
 }
 
 .project-link.details:hover {
-  background: var(--bg-light);
-  color: var(--text-primary) !important;
+  background: var(--text-primary);
+  color: var(--bg-light) !important;
   border-color: var(--text-primary);
-  border-bottom-color: var(--text-primary);
   gap: 1rem;
 }
 
@@ -1815,19 +1850,6 @@ h6,
   font-weight: 400;
   color: var(--text-primary);
   font-family: var(--font-archivo), sans-serif;
-}
-
-/* "Details" link on project cards */
-.project-link.details {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  border-bottom-color: transparent;
-}
-
-.project-link.details:hover {
-  color: var(--text-primary);
-  border-bottom-color: var(--text-primary);
-  gap: 1rem;
 }
 
 /* Responsive */
