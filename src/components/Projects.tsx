@@ -38,7 +38,7 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
-                        
+
                             <Link href={`/projects/digital-wellbeing-tracker`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>
@@ -64,7 +64,7 @@ export default function Projects() {
                         </div>
                         <div className="project-links">
                             <a
-                                href="https://quiz-forge-v1.vercel.app/"
+                                href="https://thequizforge.vercel.app/"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="project-link"
@@ -80,7 +80,7 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
-                        
+
                             <Link href={`/projects/quizforge`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>
@@ -122,7 +122,7 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
-                        
+
                             <Link href={`/projects/mindpalette`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>
@@ -150,7 +150,7 @@ export default function Projects() {
                                 <span>Private Repository</span>
                                 <i className="fas fa-lock"></i>
                             </span>
-                        
+
                             <Link href={`/projects/blockchain-vpn`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>
@@ -182,7 +182,7 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
-                        
+
                             <Link href={`/projects/smart-route`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>
@@ -214,7 +214,7 @@ export default function Projects() {
                             >
                                 <i className="fab fa-github"></i>
                             </a>
-                        
+
                             <Link href={`/projects/ai-news-summarizer`} className="project-link details">
                                 <span>Details</span>
                                 <i className="fas fa-arrow-right"></i>

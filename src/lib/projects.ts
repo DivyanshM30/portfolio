@@ -59,7 +59,7 @@ export const projects: Project[] = [
     ],
     tech: ['Next.js', 'TypeScript', 'Gemini API', 'Document Parsing', 'PDF.js / LangChain'],
     timeline: 'March 2025 - May 2025',
-    liveUrl: 'https://quiz-forge-v1.vercel.app/',
+    liveUrl: 'https://thequizforge.vercel.app/',
     githubUrl: 'https://github.com/DivyanshM30/QuizForge',
     highlights: [
       'Supports multiple document formats: PDF, PPT, and plain text',
