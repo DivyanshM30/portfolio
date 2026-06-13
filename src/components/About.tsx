@@ -5,24 +5,24 @@ export default function About() {
                 <h2 className="section-title">About Me</h2>
                 <div className="about-content">
                     <div className="about-stats">
-                        <div className="stat-card">
+                        <div className="stat-card stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
                             <div className="stat-number">15+</div>
                             <div className="stat-label">Projects Completed</div>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card stagger-item" style={{ '--stagger-index': 1 } as React.CSSProperties}>
                             <div className="stat-number">500+</div>
                             <div className="stat-label">DSA Problems Solved</div>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
                             <div className="stat-number">8.5</div>
                             <div className="stat-label">CGPA</div>
                         </div>
-                        <div className="stat-card">
+                        <div className="stat-card stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
                             <div className="stat-number">3+</div>
                             <div className="stat-label">Years Coding</div>
                         </div>
                     </div>
-                    <div className="about-text">
+                    <div className="about-text stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
                         <p>
                             I am a Computer Science undergraduate at Vellore Institute of Technology with a passion for software engineering and system architecture. I specialize in bridging the gap between complex backend logic and intuitive frontend interfaces, building software solutions that are both highly performant and user-centric.
                         </p>

@@ -5,7 +5,7 @@ export default function Projects() {
             <div className="container">
                 <h2 className="section-title">Featured Projects</h2>
                 <div className="projects-grid">
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">01</div>
                             <h3 className="project-title">Digital Wellbeing Tracker</h3>
@@ -46,7 +46,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 1 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">02</div>
                             <h3 className="project-title">QuizForge</h3>
@@ -88,7 +88,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">03</div>
                             <h3 className="project-title">MindPalette</h3>
@@ -130,7 +130,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">04</div>
                             <h3 className="project-title">Blockchain-based Decentralized VPN</h3>
@@ -158,7 +158,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 4 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">05</div>
                             <h3 className="project-title">Smart Route</h3>
@@ -190,7 +190,7 @@ export default function Projects() {
                         </div>
                     </div>
 
-                    <div className="project-card">
+                    <div className="project-card stagger-item" style={{ '--stagger-index': 5 } as React.CSSProperties}>
                         <div className="project-header">
                             <div className="project-number">06</div>
                             <h3 className="project-title">Real-Time AI Based News Summarizer Web App</h3>

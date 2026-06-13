@@ -6,7 +6,7 @@ export default function Skills() {
 
                 {/* Skill Categories with Visual Tags */}
                 <div className="skills-container">
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-code"></i>
                             <h3>Languages</h3>
@@ -21,7 +21,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 1 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-laptop-code"></i>
                             <h3>Frontend</h3>
@@ -37,7 +37,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-server"></i>
                             <h3>Backend</h3>
@@ -52,7 +52,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-robot"></i>
                             <h3>AI &amp; GenAI</h3>
@@ -68,7 +68,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 4 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-database"></i>
                             <h3>Databases</h3>
@@ -82,7 +82,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group">
+                    <div className="skill-group stagger-item" style={{ '--stagger-index': 5 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-tools"></i>
                             <h3>Tools &amp; Cloud</h3>

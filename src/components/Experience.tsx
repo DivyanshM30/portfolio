@@ -4,7 +4,7 @@ export default function Experience() {
             <div className="container">
                 <h2 className="section-title">Experience &amp; Achievements</h2>
                 <div className="timeline">
-                    <div className="timeline-item">
+                    <div className="timeline-item stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <h3 className="experience-title">IBM GenAI Certification</h3>
@@ -16,7 +16,7 @@ export default function Experience() {
                         </div>
                     </div>
 
-                    <div className="timeline-item">
+                    <div className="timeline-item stagger-item" style={{ '--stagger-index': 1 } as React.CSSProperties}>
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <h3 className="experience-title">AWS APAC Solutions Architecture Virtual Experience Program</h3>
@@ -30,7 +30,7 @@ export default function Experience() {
                         </div>
                     </div>
 
-                    <div className="timeline-item">
+                    <div className="timeline-item stagger-item" style={{ '--stagger-index': 2 } as React.CSSProperties}>
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <h3 className="experience-title">Competitive Programming</h3>
@@ -42,7 +42,7 @@ export default function Experience() {
                         </div>
                     </div>
 
-                    <div className="timeline-item">
+                    <div className="timeline-item stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <h3 className="experience-title">Development Team</h3>

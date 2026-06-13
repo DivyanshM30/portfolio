@@ -11,22 +11,24 @@ export default function Hero() {
                 <div className="hero-content">
                     <div className="hero-top">
                         <div className="hero-text">
-                            <div className="hero-badge">Available for Opportunities</div>
-                            <a
-                                href="https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <div className="hero-badge">Resume</div>
-                            </a>
-                            <h1>Divyansh Mishra</h1>
-                            <h2 className="subtitle">Software Engineer &amp; Full-Stack Developer</h2>
-                            <p className="description">
+                            <div className="hero-anim hero-anim-delay-1" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                                <div className="hero-badge">Available for Opportunities</div>
+                                <a
+                                    href="https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    <div className="hero-badge">Resume</div>
+                                </a>
+                            </div>
+                            <h1 className="hero-anim hero-anim-delay-2">Divyansh Mishra</h1>
+                            <h2 className="subtitle hero-anim hero-anim-delay-3">Software Engineer &amp; Full-Stack Developer</h2>
+                            <p className="description hero-anim hero-anim-delay-4">
                                 B.Tech Computer Science student specializing in building scalable full-stack applications.
                                 Backed by a strong foundation in Data Structures &amp; Algorithms (500+ solved) and hands-on experience in modern web technologies.
                             </p>
                         </div>
-                        <div className="hero-image">
+                        <div className="hero-image hero-photo-anim">
                             <Image
                                 src="/profile.png"
                                 alt="Divyansh Mishra"
@@ -37,7 +39,7 @@ export default function Hero() {
                             />
                         </div>
                     </div>
-                    <div className="hero-stats">
+                    <div className="hero-stats hero-stats-anim">
                         <div className="hero-stat">
                             <span className="stat-value">500+</span>
                             <span className="stat-label">DSA Problems</span>
