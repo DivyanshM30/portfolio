@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Archivo, Space_Grotesk, JetBrains_Mono } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import ScrollProgress from '@/components/ScrollProgress';
 import { Analytics } from '@vercel/analytics/next';
 
 const spaceGrotesk = Space_Grotesk({
@@ -133,7 +134,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spaceGrotesk.variable} ${archivo.variable} ${jetbrainsMono.variable}`}>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <ScrollProgress />
+          {children}
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

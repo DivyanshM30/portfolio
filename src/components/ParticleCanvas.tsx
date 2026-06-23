@@ -31,10 +31,14 @@ export default function ParticleCanvas() {
 
     const createParticles = useCallback((width: number, height: number) => {
         const particles: Particle[] = [];
-        const particleCount = Math.floor((width * height) / 15000);
+        const particleCount = Math.floor((width * height) / 10000);
 
         for (let i = 0; i < particleCount; i++) {
-            const baseRadius = 1 + Math.random() * 1.5;
+            const baseRadius = Math.random() < 0.7
+                ? 0.5 + Math.random() * 0.8   // 70% tiny
+                : Math.random() < 0.9
+                    ? 1.2 + Math.random() * 0.8 // 20% medium
+                    : 2 + Math.random() * 1;    // 10% large
             particles.push({
                 x: Math.random() * width,
                 y: Math.random() * height,
@@ -97,10 +101,10 @@ export default function ParticleCanvas() {
             ctx.fillStyle = isDark ? '#0a0a0a' : '#ffffff';
             ctx.fillRect(0, 0, width, height);
 
-            // Get colors based on theme - increased opacity for light mode visibility
-            const lineColor = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)';
-            const particleColor = isDark ? 'rgba(255, 255, 255, 0.2)' : 'rgba(0, 0, 0, 0.25)';
-            const mouseLineColor = isDark ? 'rgba(255, 255, 255, 0.15)' : 'rgba(0, 0, 0, 0.2)';
+            // Get colors based on theme - monochrome (white on dark, ink on light)
+            const lineColor = isDark ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.15)';
+            const particleColor = isDark ? 'rgba(255, 255, 255, 0.32)' : 'rgba(0, 0, 0, 0.25)';
+            const mouseLineColor = isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(0, 0, 0, 0.2)';
 
             // Draw connections between particles
             ctx.strokeStyle = lineColor;
@@ -131,11 +135,21 @@ export default function ParticleCanvas() {
                     const distance = Math.sqrt(dx * dx + dy * dy);
 
                     if (distance < 150) {
-                        const baseOpacity = isDark ? 0.6 : 0.7;
-                        const opacity = (1 - distance / 150) * baseOpacity;
-                        ctx.strokeStyle = mouseLineColor;
-                        ctx.globalAlpha = opacity;
-                        ctx.lineWidth = isDark ? 0.5 : 0.7;
+                        if (isDark) {
+                            const grad = ctx.createLinearGradient(
+                                mouse.x, mouse.y, particles[i].x, particles[i].y
+                            );
+                            grad.addColorStop(0, `rgba(255, 255, 255, ${(1 - distance / 150) * 0.45})`);
+                            grad.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                            ctx.strokeStyle = grad;
+                            ctx.globalAlpha = 1;
+                            ctx.lineWidth = 1;
+                        } else {
+                            const opacity = (1 - distance / 150) * 0.7;
+                            ctx.strokeStyle = mouseLineColor;
+                            ctx.globalAlpha = opacity;
+                            ctx.lineWidth = 0.8;
+                        }
                         ctx.beginPath();
                         ctx.moveTo(mouse.x, mouse.y);
                         ctx.lineTo(particles[i].x, particles[i].y);
@@ -155,7 +169,7 @@ export default function ParticleCanvas() {
 
             // Draw mouse particle
             if (mouse.x > 0 && mouse.y > 0) {
-                ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.15)';
+                ctx.fillStyle = isDark ? 'rgba(255, 255, 255, 0.18)' : 'rgba(0, 0, 0, 0.15)';
                 ctx.beginPath();
                 ctx.arc(mouse.x, mouse.y, isDark ? 3 : 4, 0, Math.PI * 2);
                 ctx.fill();

@@ -1,12 +1,39 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import ParticleCanvas from './ParticleCanvas';
 import CountUp from './CountUp';
 
+const SUBTITLE = 'Software Engineer & Full-Stack Developer';
+
 export default function Hero() {
+    const [typed, setTyped] = useState('');
+
+    useEffect(() => {
+        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduce) {
+            setTyped(SUBTITLE);
+            return;
+        }
+        let i = 0;
+        let interval: ReturnType<typeof setInterval>;
+        // Start after the hero entrance settles
+        const start = setTimeout(() => {
+            interval = setInterval(() => {
+                i += 1;
+                setTyped(SUBTITLE.slice(0, i));
+                if (i >= SUBTITLE.length) clearInterval(interval);
+            }, 55);
+        }, 550);
+        return () => {
+            clearTimeout(start);
+            clearInterval(interval);
+        };
+    }, []);
+
     return (
-        <section className="hero" id="home">
+        <section className="hero scanlines" id="home">
             <ParticleCanvas />
             <div className="hero-container">
                 <div className="hero-content">
@@ -19,11 +46,11 @@ export default function Hero() {
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
-                                    <div className="hero-badge">Resume</div>
+                                    <div className="hero-badge resume-badge">Resume ↗</div>
                                 </a>
                             </div>
                             <h1 className="hero-anim hero-anim-delay-2">Divyansh Mishra</h1>
-                            <h2 className="subtitle hero-anim hero-anim-delay-3">Software Engineer &amp; Full-Stack Developer</h2>
+                            <h2 className="subtitle hero-anim hero-anim-delay-3 cursor-blink" aria-label={SUBTITLE}>{typed}</h2>
                             <p className="description hero-anim hero-anim-delay-4">
                                 B.Tech Computer Science student specializing in building scalable full-stack applications.
                                 Backed by a strong foundation in Data Structures &amp; Algorithms (500+ solved) and hands-on experience in modern web technologies.
@@ -55,6 +82,46 @@ export default function Hero() {
                         </div>
                     </div>
                 </div>
+            </div>
+
+            {/* HUD Status Panel — only visible on dark mode via CSS */}
+            <div className="hud-panel">
+                <div className="hud-row">
+                    <span className="hud-label">STATUS</span>
+                    <span className="hud-value hud-green">ONLINE</span>
+                </div>
+                <div className="hud-row">
+                    <span className="hud-label">OPEN TO</span>
+                    <span className="hud-value">SDE ROLES</span>
+                </div>
+                <div className="hud-row">
+                    <span className="hud-label">RESPONSE</span>
+                    <span className="hud-value">&lt; 24H</span>
+                </div>
+            </div>
+
+            {/* Scroll indicator */}
+            <div style={{
+                position: 'absolute',
+                bottom: '2rem',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: '8px',
+                opacity: 0.4,
+                zIndex: 1
+            }}>
+                <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase',
+                    color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono, monospace' }}>
+                    SCROLL
+                </span>
+                <div style={{
+                    width: '1px', height: '40px',
+                    background: 'linear-gradient(to bottom, var(--text-secondary), transparent)',
+                    animation: 'scroll-line 1.5s ease-in-out infinite'
+                }} />
             </div>
         </section>
     );

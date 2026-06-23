@@ -1,6 +1,6 @@
 export default function Skills() {
     return (
-        <section className="section skills" id="skills">
+        <section className="section skills dot-grid" id="skills">
             <div className="container">
                 <h2 className="section-title">Technical Skills</h2>
 
@@ -52,7 +52,7 @@ export default function Skills() {
                         </div>
                     </div>
 
-                    <div className="skill-group stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
+                    <div className="skill-group skill-group-ai stagger-item" style={{ '--stagger-index': 3 } as React.CSSProperties}>
                         <div className="skill-group-header">
                             <i className="fas fa-robot"></i>
                             <h3>AI &amp; GenAI</h3>

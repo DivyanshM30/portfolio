@@ -5,3 +5,4 @@ dist
 v1.0
 .DS_Store
 .env.local
+enhancement_prompt.md

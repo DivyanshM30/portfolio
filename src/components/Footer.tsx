@@ -39,7 +39,13 @@ export default function Footer() {
                         <i className="fas fa-envelope"></i>
                     </a>
                 </div>
-                <p>&copy; {new Date().getFullYear()} Divyansh Mishra. All rights reserved. | Made with ❤️</p>
+                <p>
+                    &copy; {new Date().getFullYear()} Divyansh Mishra
+                    <span style={{ margin: '0 8px' }}>·</span>
+                    All rights reserved
+                    <span style={{ margin: '0 8px' }}>·</span>
+                    Made with ❤️
+                </p>
             </div>
         </footer>
     );

@@ -2036,3 +2036,360 @@ h6,
 #overview, #highlights, #challenges, #key-learnings {
   scroll-margin-top: 6rem;
 }
+
+/* =========================================
+   MINIMAL ENHANCEMENT LAYER
+   Black & white base with ONE quiet blue accent
+   (var(--accent-color)) used only on status / wayfinding:
+   the availability dot, the active nav link, and the
+   scroll-progress bar. Every dark rule is mirrored into the
+   prefers-color-scheme form so system-dark visitors (no
+   data-theme attribute) get the full treatment.
+   ========================================= */
+
+/* ── Tokens (theme-aware, monochrome) ────────────────── */
+:root {
+  --scan-line: rgba(0, 0, 0, 0.022);
+  --grid-line: rgba(0, 0, 0, 0.05);
+  --glow-text: none;
+}
+[data-theme="dark"] {
+  --scan-line: rgba(255, 255, 255, 0.02);
+  --grid-line: rgba(255, 255, 255, 0.04);
+  --glow-text: 0 0 18px rgba(255, 255, 255, 0.28);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --scan-line: rgba(255, 255, 255, 0.02);
+    --grid-line: rgba(255, 255, 255, 0.04);
+    --glow-text: 0 0 18px rgba(255, 255, 255, 0.28);
+  }
+}
+
+/* ── Typography ──────────────────────────────────────── */
+
+/* Hero name — very subtle silver gradient on dark only */
+[data-theme="dark"] .hero-content h1 {
+  background: linear-gradient(135deg, #ffffff 0%, #d4d4d8 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-content h1 {
+    background: linear-gradient(135deg, #ffffff 0%, #d4d4d8 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Section title underline — solid, slightly thicker, soft glow on dark */
+.section-fade.visible .section-title::after {
+  background: var(--text-primary);
+  height: 2px;
+  width: 60px;
+}
+[data-theme="dark"] .section-fade.visible .section-title::after {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.22);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .section-fade.visible .section-title::after {
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* Logo hover — soft glow (dark), clean on light */
+.logo:hover {
+  color: var(--text-primary);
+  text-shadow: var(--glow-text);
+  transition: all 0.3s ease;
+}
+
+/* Stat number — glow on hover (dark only via token) */
+.stat-card:hover .stat-number {
+  text-shadow: var(--glow-text);
+}
+
+/* ── Background textures ─────────────────────────────── */
+
+/* Scan-line texture overlay (hero) */
+.scanlines {
+  position: relative;
+}
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    var(--scan-line) 0px,
+    var(--scan-line) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dot-grid background (about, skills) */
+.dot-grid {
+  background-image: radial-gradient(var(--grid-line) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-position: 0 0;
+}
+
+/* Project cards: no hover shine. The lift + mono border/shadow
+   (see the hover-neutralised block below) is the whole effect. */
+
+/* ── Terminal touches ────────────────────────────────── */
+
+/* Typing cursor blink after the hero subtitle */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink::after {
+  content: '_';
+  display: inline-block;
+  color: var(--text-primary);
+  animation: cursor-blink 1.1s step-end infinite;
+  margin-left: 2px;
+  font-weight: 300;
+}
+
+/* Mac-style terminal window dots (kept in classic colours) */
+.terminal-dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.terminal-dot.red { background: #ff5f57; }
+.terminal-dot.yellow { background: #ffbd2e; }
+.terminal-dot.green { background: #28c840; }
+
+/* Terminal-style ">" prefix on stat labels */
+.stat-prefix {
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+}
+
+/* Highlighted technical keywords — emphasis by weight, not colour */
+mark.tech {
+  background: none;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* ── ACCENT (blue) — only one spot ───────────────────── */
+/* The navbar is fully monochrome (active link uses the base
+   --text-primary styles). The whole site is now monochrome. */
+
+/* Scroll progress bar — thin monochrome indicator
+   (white on dark, black on light via --text-primary) */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--text-primary);
+  z-index: 9999;
+  transition: width 0.1s linear;
+}
+
+/* ── Hero ────────────────────────────────────────────── */
+
+/* Profile photo — faint white ring at rest on dark */
+[data-theme="dark"] .profile-photo {
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04), 0 0 30px rgba(255, 255, 255, 0.06);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .profile-photo {
+    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.04), 0 0 30px rgba(255, 255, 255, 0.06);
+  }
+}
+
+/* Hero stat values — soft glow on hover (dark) */
+[data-theme="dark"] .hero-stat:hover .stat-value {
+  text-shadow: 0 0 22px rgba(255, 255, 255, 0.32);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-stat:hover .stat-value {
+    text-shadow: 0 0 22px rgba(255, 255, 255, 0.32);
+  }
+}
+
+/* Hero scroll indicator line animation */
+@keyframes scroll-line {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.1); }
+}
+
+/* ── About — stat cards ──────────────────────────────── */
+.stat-card {
+  padding-left: 1rem;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--text-primary), transparent);
+  transform: scaleY(0);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom;
+}
+.stat-card:hover::before {
+  transform: scaleY(1);
+}
+.stat-card:hover {
+  padding-left: 1.5rem;
+}
+
+/* ── Skills — group left border ──────────────────────── */
+.skill-group {
+  position: relative;
+  padding-left: 1rem;
+}
+.skill-group::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--text-primary), transparent);
+  transform: scaleY(0);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top;
+}
+.skill-group:hover::before {
+  transform: scaleY(1);
+}
+.skill-group:hover {
+  padding-left: 1.5rem;
+}
+
+/* ── Experience — monospace date + timeline hover (dark) ─ */
+.experience-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+}
+[data-theme="dark"] .timeline-content {
+  padding-left: 1.5rem;
+  border-left: 2px solid rgba(255, 255, 255, 0);
+  transition: all 0.3s ease, border-left-color 0.3s ease;
+}
+[data-theme="dark"] .timeline-content:hover {
+  border-left-color: rgba(255, 255, 255, 0.3);
+  padding-left: 2rem;
+}
+[data-theme="dark"] .timeline-content:hover .experience-title {
+  text-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .timeline-content {
+    padding-left: 1.5rem;
+    border-left: 2px solid rgba(255, 255, 255, 0);
+    transition: all 0.3s ease, border-left-color 0.3s ease;
+  }
+  :root:not([data-theme="light"]) .timeline-content:hover {
+    border-left-color: rgba(255, 255, 255, 0.3);
+    padding-left: 2rem;
+  }
+  :root:not([data-theme="light"]) .timeline-content:hover .experience-title {
+    text-shadow: 0 0 18px rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* ── Hero HUD status panel (dark only, monochrome) ────── */
+.hud-panel {
+  display: none;
+  position: absolute;
+  bottom: 5rem;
+  right: 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  z-index: 2;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+.hud-panel:hover { opacity: 1; }
+
+[data-theme="dark"] .hud-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hud-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+}
+
+.hud-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.hud-label {
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  min-width: 80px;
+}
+.hud-value {
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+}
+.hud-value.hud-green {
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 768px) {
+  .hud-panel { display: none !important; }
+}
+
+/* ── Project card hover — neutralised to monochrome ──── */
+/* Overrides the original --accent-color (blue) hover. Comes
+   later in the file, so it wins at equal specificity. The
+   original translateY lift is preserved (not redeclared). */
+.project-card:hover {
+  border-color: var(--text-secondary);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.18);
+}
+.project-card:hover .project-number {
+  color: var(--text-primary);
+}
+[data-theme="dark"] .project-card:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .project-card:hover {
+    border-color: rgba(255, 255, 255, 0.22);
+    box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* ── Reduced motion ──────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-progress,
+  .cursor-blink::after,
+  .hud-panel {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -2,9 +2,21 @@ export default function Experience() {
     return (
         <section className="section experience" id="experience">
             <div className="container">
+                <div className="terminal-dots">
+                    <div className="terminal-dot red" />
+                    <div className="terminal-dot yellow" />
+                    <div className="terminal-dot green" />
+                    <span style={{
+                        fontFamily: 'JetBrains Mono, monospace',
+                        fontSize: '0.7rem',
+                        color: 'var(--text-secondary)',
+                        marginLeft: '8px',
+                        opacity: 0.5
+                    }}>career.log</span>
+                </div>
                 <h2 className="section-title">Experience &amp; Achievements</h2>
                 <div className="timeline">
-                    <div className="timeline-item stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
+                    <div className="timeline-item timeline-item-ibm stagger-item" style={{ '--stagger-index': 0 } as React.CSSProperties}>
                         <div className="timeline-dot"></div>
                         <div className="timeline-content">
                             <h3 className="experience-title">IBM GenAI Certification</h3>
