@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   description:
     'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
   authors: [{ name: 'Divyansh Mishra', url: 'https://github.com/DivyanshM30' }],
-  metadataBase: new URL('https://divyansh-mishra-portfolio.vercel.app'),
+  metadataBase: new URL('https://divyanshm.dev'),
   alternates: {
     canonical: '/',
   },
@@ -36,11 +36,12 @@ export const metadata: Metadata = {
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
       'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
-    url: 'https://divyansh-mishra-portfolio.vercel.app',
+    url: 'https://divyanshm.dev',
     siteName: 'Divyansh Mishra Portfolio',
     images: [
       {
-        url: '/og-image.png',
+        // ?v=3 cache-busts the previously-scraped placeholder image on social crawlers.
+        url: '/og-image.png?v=3',
         width: 1200,
         height: 630,
         alt: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
       'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
-    images: ['/og-image.png'],
+    images: ['/og-image.png?v=3'],
   },
   robots: {
     index: true,
@@ -78,8 +79,8 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Divyansh Mishra',
-    url: 'https://divyansh-mishra-portfolio.vercel.app',
-    image: 'https://divyansh-mishra-portfolio.vercel.app/profile.png',
+    url: 'https://divyanshm.dev',
+    image: 'https://divyanshm.dev/profile.png',
     jobTitle: 'Software Engineer & Full-Stack Developer',
     alumniOf: {
       '@type': 'EducationalOrganization',
