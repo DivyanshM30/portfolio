@@ -7,6 +7,13 @@ import CountUp from './CountUp';
 
 const SUBTITLE = 'Software Engineer & Full-Stack Developer';
 
+// Resume link is read from an env var so it can be changed in Vercel
+// (NEXT_PUBLIC_ is required because Hero is a client component). The
+// fallback keeps the link working if the var is ever unset.
+const RESUME_URL =
+    process.env.NEXT_PUBLIC_RESUME_URL ||
+    'https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view';
+
 export default function Hero() {
     const [typed, setTyped] = useState('');
 
@@ -42,7 +49,7 @@ export default function Hero() {
                             <div className="hero-anim hero-anim-delay-1" style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
                                 <div className="hero-badge">Available for Opportunities</div>
                                 <a
-                                    href="https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view"
+                                    href={RESUME_URL}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
