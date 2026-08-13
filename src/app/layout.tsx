@@ -118,11 +118,14 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Script to prevent FOUC - sets theme before paint */}
+        {/* Runs before paint: marks the document as JS-capable (which enables the
+            scroll-reveal animations' hidden starting state) and applies the saved
+            theme so colours never flash. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
+                document.documentElement.classList.add('js');
                 try {
                   var theme = localStorage.getItem('theme');
                   if (theme) {

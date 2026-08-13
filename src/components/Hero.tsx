@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import ParticleCanvas from './ParticleCanvas';
 import CountUp from './CountUp';
 
 const SUBTITLE = 'Software Engineer & Full-Stack Developer';
@@ -40,8 +39,7 @@ export default function Hero() {
     }, []);
 
     return (
-        <section className="hero scanlines" id="home">
-            <ParticleCanvas />
+        <section className="hero scanlines dot-grid" id="home">
             <div className="hero-container">
                 <div className="hero-content">
                     <div className="hero-top">
