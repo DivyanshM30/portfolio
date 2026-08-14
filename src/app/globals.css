@@ -192,6 +192,35 @@ h6,
   transform: rotate(360deg) scale(1.15);
 }
 
+/* Both glyphs are in the markup; CSS reveals whichever matches the active
+   theme. This keeps the icon correct in the server-rendered HTML and with JS
+   disabled, rather than depending on React state resolving after hydration. */
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: inline-block;
+}
+
+[data-theme="dark"] .theme-icon-sun {
+  display: inline-block;
+}
+
+[data-theme="dark"] .theme-icon-moon {
+  display: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-icon-sun {
+    display: inline-block;
+  }
+
+  :root:not([data-theme="light"]) .theme-icon-moon {
+    display: none;
+  }
+}
+
 .mobile-menu {
   display: none;
   flex-direction: column;
@@ -215,16 +244,6 @@ h6,
   background: var(--bg-light);
   position: relative;
   overflow: hidden;
-}
-
-.network-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
 }
 
 .hero-container {
@@ -1307,8 +1326,13 @@ h6,
   animation-delay: 0.65s;
 }
 
-/* Section fade-in + slide-up animation */
-.section-fade {
+/* Section fade-in + slide-up animation.
+   The hidden starting state is gated behind the `js` class, which the pre-paint
+   script in layout.tsx puts on <html>. Without JavaScript — or if the
+   IntersectionObserver never fires — content stays visible instead of being
+   stuck at opacity 0. `:where()` contributes no specificity, so the `.visible`
+   and prefers-reduced-motion rules below continue to win exactly as before. */
+:where(.js) .section-fade {
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
@@ -1321,7 +1345,7 @@ h6,
 }
 
 /* Staggered children animations */
-.stagger-item {
+:where(.js) .stagger-item {
   opacity: 0;
   transform: translateY(24px);
   transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),

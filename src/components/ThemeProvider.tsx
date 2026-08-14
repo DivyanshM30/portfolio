@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState, createContext, useContext, ReactNode } from 'react';
+import { createContext, useCallback, useContext, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
-    theme: Theme;
     toggleTheme: () => void;
 }
 
@@ -23,59 +22,39 @@ interface ThemeProviderProps {
     children: ReactNode;
 }
 
-export function ThemeProvider({ children }: ThemeProviderProps) {
-    const [theme, setTheme] = useState<Theme>('dark');
-    const [mounted, setMounted] = useState(false);
-
-    // Initialize theme on mount
-    useEffect(() => {
-        // Check localStorage first
-        const savedTheme = localStorage.getItem('theme') as Theme | null;
-
-        if (savedTheme) {
-            setTimeout(() => setTheme(savedTheme), 0);
-            document.documentElement.dataset.theme = savedTheme;
-        } else {
-            // Check system preference
-            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const initialTheme = prefersDark ? 'dark' : 'light';
-            setTimeout(() => setTheme(initialTheme), 0);
-            // Don't set data-theme if using system preference - CSS handles it
-        }
-
-        setTimeout(() => setMounted(true), 0);
-    }, []);
-
-    // Listen for system preference changes
-    useEffect(() => {
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-
-        const handleChange = (e: MediaQueryListEvent) => {
-            // Only update if no explicit theme is saved
-            if (!localStorage.getItem('theme')) {
-                const newTheme = e.matches ? 'dark' : 'light';
-                setTheme(newTheme);
-            }
-        };
-
-        mediaQuery.addEventListener('change', handleChange);
-        return () => mediaQuery.removeEventListener('change', handleChange);
-    }, []);
-
-    const toggleTheme = () => {
-        const newTheme = theme === 'dark' ? 'light' : 'dark';
-        setTheme(newTheme);
-        document.documentElement.dataset.theme = newTheme;
-        localStorage.setItem('theme', newTheme);
-    };
-
-    // Prevent flash of wrong theme
-    if (!mounted) {
-        return null;
+/**
+ * Reads the theme that is currently in effect. `data-theme` is set pre-paint by
+ * the inline script in layout.tsx when the visitor has an explicit preference;
+ * when it is absent the CSS media queries follow the system, so the system
+ * preference is the effective theme.
+ */
+function getEffectiveTheme(): Theme {
+    const explicit = document.documentElement.dataset.theme;
+    if (explicit === 'light' || explicit === 'dark') {
+        return explicit;
     }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+}
+
+/**
+ * The `data-theme` attribute on <html> is the single source of truth: CSS reads
+ * it directly (including the theme-toggle icon), so there is deliberately no
+ * React state mirroring it. That keeps the whole tree server-renderable and
+ * avoids a hydration pass that could disagree with the pre-paint script.
+ */
+export function ThemeProvider({ children }: ThemeProviderProps) {
+    const toggleTheme = useCallback(() => {
+        const next: Theme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        try {
+            localStorage.setItem('theme', next);
+        } catch {
+            // Private-mode / storage-disabled: the toggle still works for this page view.
+        }
+    }, []);
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );

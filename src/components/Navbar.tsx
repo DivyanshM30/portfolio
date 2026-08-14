@@ -10,7 +10,7 @@ export default function Navbar() {
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
     const [toggling, setToggling] = useState(false);
-    const { theme, toggleTheme } = useTheme();
+    const { toggleTheme } = useTheme();
 
     // Scroll effect - adds 'scrolled' class on scroll > 100px
     // Also tracks which section is currently in view
@@ -118,7 +118,10 @@ export default function Navbar() {
                     title="Toggle dark mode"
                     onClick={handleToggleTheme}
                 >
-                    <i className={theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon'}></i>
+                    {/* Both glyphs ship in the HTML; CSS keyed on data-theme reveals the
+                        active one, so the icon is correct pre-hydration and without JS. */}
+                    <i className="fas fa-sun theme-icon-sun" aria-hidden="true"></i>
+                    <i className="fas fa-moon theme-icon-moon" aria-hidden="true"></i>
                 </button>
                 <div
                     className={`mobile-menu${mobileMenuOpen ? ' active' : ''}`}
