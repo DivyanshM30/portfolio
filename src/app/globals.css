@@ -176,61 +176,144 @@ h6,
   color: var(--text-primary);
 }
 
-/* Theme toggle */
-.theme-toggle {
-  background: none;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  width: 36px;
-  height: 36px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--text-primary);
-  transition: all 0.2s ease;
+/* Theme toggle — dependency-free adaptation of the Moodtracker sky switch. */
+.theme-switch {
+  position: relative;
+  width: 64px;
+  height: 32px;
+  flex: 0 0 64px;
+  padding: 0;
   margin-left: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: linear-gradient(90deg, #10141f, #1d2333);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+  transition: background 0.45s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.theme-toggle:hover {
-  border-color: var(--text-primary);
+.theme-switch:hover {
+  border-color: rgba(255, 255, 255, 0.32);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.35), 0 0 0 3px rgba(255, 255, 255, 0.05);
 }
 
-.theme-toggle i {
-  font-size: 0.9rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+.theme-switch:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
 }
 
-.theme-toggle.toggling i {
-  transform: rotate(360deg) scale(1.15);
+.theme-switch-scene {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.45s ease;
 }
 
-/* Both glyphs are in the markup; CSS reveals whichever matches the active
-   theme. This keeps the icon correct in the server-rendered HTML and with JS
-   disabled, rather than depending on React state resolving after hydration. */
-.theme-icon-sun {
-  display: none;
+.theme-switch-scene svg {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 
-.theme-icon-moon {
-  display: inline-block;
+.theme-switch-night {
+  opacity: 1;
 }
 
-[data-theme="dark"] .theme-icon-sun {
-  display: inline-block;
+.theme-switch-day {
+  opacity: 0;
 }
 
-[data-theme="dark"] .theme-icon-moon {
-  display: none;
+.theme-switch-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transform: translateX(32px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.35), inset 0 -2px 3px rgba(0, 0, 0, 0.15), inset 0 2px 3px rgba(255, 255, 255, 0.4);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-icon-sun {
-    display: inline-block;
-  }
+.theme-switch-sun,
+.theme-switch-moon {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  transition: opacity 0.3s ease;
+}
 
-  :root:not([data-theme="light"]) .theme-icon-moon {
-    display: none;
+.theme-switch-sun {
+  background: radial-gradient(circle at 35% 30%, #ffd75e, #f5a623);
+  opacity: 0;
+}
+
+.theme-switch-moon {
+  background: radial-gradient(circle at 35% 30%, #f0f3f7, #c8d0da);
+  opacity: 1;
+}
+
+.theme-switch-crater {
+  position: absolute;
+  border-radius: 50%;
+  background: #aab4c2;
+}
+
+.crater-one {
+  top: 4px;
+  left: 11px;
+  width: 7px;
+  height: 7px;
+}
+
+.crater-two {
+  top: 13px;
+  left: 5px;
+  width: 5px;
+  height: 5px;
+}
+
+.crater-three {
+  top: 15px;
+  left: 14px;
+  width: 3.5px;
+  height: 3.5px;
+}
+
+[data-theme="light"] .theme-switch {
+  border-color: rgba(15, 23, 42, 0.12);
+  background: linear-gradient(180deg, #3d8fd6, #7cbdf0);
+}
+
+[data-theme="light"] .theme-switch:hover {
+  border-color: rgba(15, 23, 42, 0.28);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2), 0 0 0 3px rgba(61, 143, 214, 0.12);
+}
+
+[data-theme="light"] .theme-switch-night {
+  opacity: 0;
+}
+
+[data-theme="light"] .theme-switch-day,
+[data-theme="light"] .theme-switch-sun {
+  opacity: 1;
+}
+
+[data-theme="light"] .theme-switch-moon {
+  opacity: 0;
+}
+
+[data-theme="light"] .theme-switch-knob {
+  transform: translateX(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-switch,
+  .theme-switch-scene,
+  .theme-switch-knob,
+  .theme-switch-sun,
+  .theme-switch-moon {
+    transition: none;
   }
 }
 
@@ -1453,7 +1536,7 @@ h6,
     z-index: 999;
   }
 
-  .theme-toggle {
+  .theme-switch {
     margin-left: 0;
     margin-right: 1rem;
   }

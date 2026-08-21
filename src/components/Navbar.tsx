@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { useTheme } from './ThemeProvider';
+import { useEffect, useState } from 'react';
+import ThemeToggle from './ThemeToggle';
 
 const NAV_SECTIONS = ['home', 'about', 'projects', 'skills', 'experience', 'contact'];
 
@@ -9,8 +9,6 @@ export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [activeSection, setActiveSection] = useState('home');
-    const [toggling, setToggling] = useState(false);
-    const { toggleTheme } = useTheme();
 
     // Scroll effect - adds 'scrolled' class on scroll > 100px
     // Also tracks which section is currently in view
@@ -79,14 +77,6 @@ export default function Navbar() {
         setMobileMenuOpen(!mobileMenuOpen);
     };
 
-    // Theme toggle with spin animation
-    const handleToggleTheme = useCallback(() => {
-        setToggling(true);
-        toggleTheme();
-        // Remove toggling class after animation completes
-        setTimeout(() => setToggling(false), 400);
-    }, [toggleTheme]);
-
     return (
         <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
             <div className="nav-container">
@@ -106,17 +96,7 @@ export default function Navbar() {
                         </li>
                     ))}
                 </ul>
-                <button
-                    className={`theme-toggle${toggling ? ' toggling' : ''}`}
-                    id="themeToggle"
-                    title="Toggle dark mode"
-                    onClick={handleToggleTheme}
-                >
-                    {/* Both glyphs ship in the HTML; CSS keyed on data-theme reveals the
-                        active one, so the icon is correct pre-hydration and without JS. */}
-                    <i className="fas fa-sun theme-icon-sun" aria-hidden="true"></i>
-                    <i className="fas fa-moon theme-icon-moon" aria-hidden="true"></i>
-                </button>
+                <ThemeToggle />
                 <div
                     className={`mobile-menu${mobileMenuOpen ? ' active' : ''}`}
                     onClick={toggleMobileMenu}
