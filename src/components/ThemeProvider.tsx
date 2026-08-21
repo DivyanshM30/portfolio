@@ -1,10 +1,11 @@
 'use client';
 
-import { createContext, useCallback, useContext, ReactNode } from 'react';
+import { createContext, useCallback, useContext, useSyncExternalStore, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
+    theme: Theme;
     toggleTheme: () => void;
 }
 
@@ -36,6 +37,22 @@ function getEffectiveTheme(): Theme {
     return 'dark';
 }
 
+const THEME_CHANGE_EVENT = 'portfolio-theme-change';
+
+function subscribeToTheme(onStoreChange: () => void) {
+    window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
+    window.addEventListener('storage', onStoreChange);
+
+    return () => {
+        window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
+        window.removeEventListener('storage', onStoreChange);
+    };
+}
+
+function getServerTheme(): Theme {
+    return 'dark';
+}
+
 /**
  * The `data-theme` attribute on <html> is the single source of truth: CSS reads
  * it directly (including the theme-toggle icon), so there is deliberately no
@@ -43,6 +60,8 @@ function getEffectiveTheme(): Theme {
  * avoids a hydration pass that could disagree with the pre-paint script.
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
+    const theme = useSyncExternalStore(subscribeToTheme, getEffectiveTheme, getServerTheme);
+
     const toggleTheme = useCallback(() => {
         const next: Theme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
@@ -51,10 +70,12 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         } catch {
             // Private-mode / storage-disabled: the toggle still works for this page view.
         }
+
+        window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
     }, []);
 
     return (
-        <ThemeContext.Provider value={{ toggleTheme }}>
+        <ThemeContext.Provider value={{ theme, toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );
