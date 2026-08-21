@@ -42,6 +42,19 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Nav links rely on native anchor scrolling, so the smooth behaviour has to be
+   opted out of here rather than in a JS handler. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keep anchor targets clear of the fixed navbar. */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
 body {
   font-family: var(--font-space-grotesk), sans-serif;
   line-height: 1.6;
@@ -471,7 +484,7 @@ h6,
   margin-bottom: 0.5rem;
   letter-spacing: -0.03em;
   transition: color 0.3s ease;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 .stat-label {
@@ -588,7 +601,7 @@ h6,
   font-size: 0.8rem;
   font-weight: 400;
   transition: all 0.2s ease;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 .tech-tag:hover {
@@ -732,7 +745,7 @@ h6,
   background: transparent;
   transition: all 0.3s ease;
   cursor: default;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 .skill-tag:hover {
@@ -816,7 +829,7 @@ h6,
   font-weight: 400;
   margin-bottom: 0.5rem;
   font-size: 1rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
 }
 
 .experience-date {
@@ -1728,21 +1741,6 @@ h6,
   cursor: default;
 }
 
-/* Keyboard hint */
-.pd-kb-hint {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.72rem;
-  color: var(--text-secondary);
-  opacity: 0.45;
-  margin-top: 1.5rem;
-}
-
-.pd-kb-hint i {
-  font-size: 0.7rem;
-}
-
 /* Content area */
 .pd-content {
   padding-top: 0.25rem;
@@ -2201,7 +2199,7 @@ h6,
 /* Terminal-style ">" prefix on stat labels */
 .stat-prefix {
   color: var(--text-secondary);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.7rem;
 }
 
@@ -2305,7 +2303,7 @@ mark.tech {
 
 /* ── Experience — monospace date + timeline hover (dark) ─ */
 .experience-date {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.8rem;
   letter-spacing: 0.05em;
 }
@@ -2342,7 +2340,7 @@ mark.tech {
   position: absolute;
   bottom: 5rem;
   right: 2rem;
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-jetbrains-mono), monospace;
   font-size: 0.65rem;
   letter-spacing: 0.12em;
   z-index: 2;

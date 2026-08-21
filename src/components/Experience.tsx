@@ -7,7 +7,7 @@ export default function Experience() {
                     <div className="terminal-dot yellow" />
                     <div className="terminal-dot green" />
                     <span style={{
-                        fontFamily: 'JetBrains Mono, monospace',
+                        fontFamily: 'var(--font-jetbrains-mono), monospace',
                         fontSize: '0.7rem',
                         color: 'var(--text-secondary)',
                         marginLeft: '8px',

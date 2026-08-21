@@ -1,43 +1,14 @@
-'use client';
-
 import { Project, projects } from '@/lib/projects';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useEffect, useState, useCallback } from 'react';
 
 interface Props {
   project: Project;
 }
 
-export default function ProjectDetailClient({ project }: Props) {
-  const router = useRouter();
-  const [mounted, setMounted] = useState(false);
-
+export default function ProjectDetail({ project }: Props) {
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  // Keyboard navigation
-  const handleKey = useCallback(
-    (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft' && prevProject) {
-        router.push(`/projects/${prevProject.slug}`);
-      }
-      if (e.key === 'ArrowRight' && nextProject) {
-        router.push(`/projects/${nextProject.slug}`);
-      }
-    },
-    [prevProject, nextProject, router]
-  );
-
-  useEffect(() => {
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [handleKey]);
 
   return (
     <div className="pd-root">
@@ -150,13 +121,6 @@ export default function ProjectDetailClient({ project }: Props) {
               )}
             </div>
 
-            {/* Keyboard hint */}
-            {mounted && (prevProject || nextProject) && (
-              <p className="pd-kb-hint">
-                <i className="fas fa-keyboard" />
-                Use ← → keys to navigate
-              </p>
-            )}
           </div>
         </aside>
 

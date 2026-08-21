@@ -67,18 +67,12 @@ export default function Navbar() {
         return () => window.removeEventListener('resize', handleResize);
     }, []);
 
-    // Smooth scroll to section
-    const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-            // Close mobile menu after clicking
-            setMobileMenuOpen(false);
-        }
+    // Scrolling is left to the native anchor: html { scroll-behavior: smooth }
+    // animates it and section[id] { scroll-margin-top } clears the fixed navbar.
+    // That keeps the links working without JS and updates the URL hash, which
+    // the previous preventDefault + scrollIntoView handler did neither of.
+    const handleNavClick = () => {
+        setMobileMenuOpen(false);
     };
 
     const toggleMobileMenu = () => {
@@ -96,7 +90,7 @@ export default function Navbar() {
     return (
         <nav className={`navbar${scrolled ? ' scrolled' : ''}`} id="navbar">
             <div className="nav-container">
-                <a href="#" className="logo" onClick={(e) => handleNavClick(e, '#home')}>
+                <a href="#home" className="logo" onClick={handleNavClick}>
                     Divyansh Mishra
                 </a>
                 <ul className={`nav-links${mobileMenuOpen ? ' mobile-open' : ''}`}>
@@ -105,7 +99,7 @@ export default function Navbar() {
                             <a
                                 href={`#${section}`}
                                 className={activeSection === section ? 'active' : ''}
-                                onClick={(e) => handleNavClick(e, `#${section}`)}
+                                onClick={handleNavClick}
                             >
                                 {section.charAt(0).toUpperCase() + section.slice(1)}
                             </a>
