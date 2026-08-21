@@ -23,17 +23,17 @@ interface ThemeProviderProps {
 }
 
 /**
- * Reads the theme that is currently in effect. `data-theme` is set pre-paint by
- * the inline script in layout.tsx when the visitor has an explicit preference;
- * when it is absent the CSS media queries follow the system, so the system
- * preference is the effective theme.
+ * Reads the theme that is currently in effect. The server renders dark mode and
+ * the inline script in layout.tsx applies any saved preference before paint.
+ * Falling back to dark keeps the default deterministic if the attribute is ever
+ * removed by third-party code.
  */
 function getEffectiveTheme(): Theme {
     const explicit = document.documentElement.dataset.theme;
     if (explicit === 'light' || explicit === 'dark') {
         return explicit;
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    return 'dark';
 }
 
 /**

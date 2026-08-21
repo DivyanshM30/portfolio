@@ -1,7 +1,7 @@
 import { getProjectBySlug, getAllSlugs } from '@/lib/projects';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
-import ProjectDetailClient from '@/components/ProjectDetailClient';
+import ProjectDetail from '@/components/ProjectDetail';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -58,5 +58,5 @@ export default async function ProjectPage({ params }: Props) {
   const project = getProjectBySlug(slug);
   if (!project) notFound();
 
-  return <ProjectDetailClient project={project} />;
+  return <ProjectDetail project={project} />;
 }

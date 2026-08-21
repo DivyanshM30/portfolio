@@ -106,7 +106,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         {/* Font Awesome for icons */}
         <link
@@ -119,8 +119,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* Runs before paint: marks the document as JS-capable (which enables the
-            scroll-reveal animations' hidden starting state) and applies the saved
-            theme so colours never flash. */}
+            scroll-reveal animations' hidden starting state) and applies a saved
+            preference over the server-rendered dark default so colours never flash. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -128,7 +128,7 @@ export default function RootLayout({
                 document.documentElement.classList.add('js');
                 try {
                   var theme = localStorage.getItem('theme');
-                  if (theme) {
+                  if (theme === 'light' || theme === 'dark') {
                     document.documentElement.dataset.theme = theme;
                   }
                 } catch (e) {}

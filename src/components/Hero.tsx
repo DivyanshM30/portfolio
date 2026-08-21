@@ -14,18 +14,17 @@ const RESUME_URL =
     'https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view';
 
 export default function Hero() {
-    const [typed, setTyped] = useState('');
+    const [typed, setTyped] = useState(SUBTITLE);
 
     useEffect(() => {
         const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) {
-            setTyped(SUBTITLE);
-            return;
-        }
+        if (reduce) return;
+
         let i = 0;
         let interval: ReturnType<typeof setInterval>;
         // Start after the hero entrance settles
         const start = setTimeout(() => {
+            setTyped('');
             interval = setInterval(() => {
                 i += 1;
                 setTyped(SUBTITLE.slice(0, i));
@@ -119,7 +118,7 @@ export default function Hero() {
                 zIndex: 1
             }}>
                 <span style={{ fontSize: '0.6rem', letterSpacing: '0.2em', textTransform: 'uppercase',
-                    color: 'var(--text-secondary)', fontFamily: 'JetBrains Mono, monospace' }}>
+                    color: 'var(--text-secondary)', fontFamily: 'var(--font-jetbrains-mono), monospace' }}>
                     SCROLL
                 </span>
                 <div style={{
