@@ -125,13 +125,36 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                document.documentElement.classList.add('js');
+                var root = document.documentElement;
+                root.classList.add('js');
                 try {
                   var theme = localStorage.getItem('theme');
                   if (theme === 'light' || theme === 'dark') {
-                    document.documentElement.dataset.theme = theme;
+                    root.dataset.theme = theme;
                   }
                 } catch (e) {}
+
+                function syncThemeToggle() {
+                  var toggle = document.querySelector('[data-theme-toggle]');
+                  if (!toggle) return false;
+
+                  var activeTheme = root.dataset.theme === 'light' ? 'light' : 'dark';
+                  var isDark = activeTheme === 'dark';
+                  var label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+
+                  toggle.dataset.themeState = activeTheme;
+                  toggle.setAttribute('aria-checked', String(isDark));
+                  toggle.setAttribute('aria-label', label);
+                  toggle.setAttribute('title', label);
+                  return true;
+                }
+
+                if (!syncThemeToggle()) {
+                  var observer = new MutationObserver(function() {
+                    if (syncThemeToggle()) observer.disconnect();
+                  });
+                  observer.observe(root, { childList: true, subtree: true });
+                }
               })();
             `,
           }}
