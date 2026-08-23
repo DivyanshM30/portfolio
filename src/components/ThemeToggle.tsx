@@ -11,11 +11,14 @@ export default function ThemeToggle() {
         <button
             type="button"
             className="theme-switch"
+            data-theme-toggle
+            data-theme-state={theme}
             onClick={toggleTheme}
             role="switch"
             aria-checked={isDark}
             aria-label={label}
             title={label}
+            suppressHydrationWarning
         >
             <span className="theme-switch-scene theme-switch-night" aria-hidden="true">
                 <svg viewBox="0 0 64 32" focusable="false">

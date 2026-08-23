@@ -49,18 +49,22 @@ function subscribeToTheme(onStoreChange: () => void) {
     };
 }
 
-function getServerTheme(): Theme {
+function getHydrationTheme(): Theme {
+    if (typeof document !== 'undefined') {
+        return getEffectiveTheme();
+    }
+
     return 'dark';
 }
 
 /**
- * The `data-theme` attribute on <html> is the single source of truth: CSS reads
- * it directly (including the theme-toggle icon), so there is deliberately no
- * React state mirroring it. That keeps the whole tree server-renderable and
- * avoids a hydration pass that could disagree with the pre-paint script.
+ * The `data-theme` attribute on <html> is the source of truth. The external
+ * store exposes it to controls that need semantic state while keeping the full
+ * tree server-renderable. During hydration, the snapshot reads the theme that
+ * the pre-paint script has already applied.
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
-    const theme = useSyncExternalStore(subscribeToTheme, getEffectiveTheme, getServerTheme);
+    const theme = useSyncExternalStore(subscribeToTheme, getEffectiveTheme, getHydrationTheme);
 
     const toggleTheme = useCallback(() => {
         const next: Theme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
