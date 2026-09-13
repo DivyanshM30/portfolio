@@ -3,7 +3,7 @@
 import { Project, projects } from '@/lib/projects';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 
 interface Props {
   project: Project;
@@ -11,15 +11,10 @@ interface Props {
 
 export default function ProjectDetailClient({ project }: Props) {
   const router = useRouter();
-  const [mounted, setMounted] = useState(false);
 
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Keyboard navigation
   const handleKey = useCallback(
@@ -89,7 +84,7 @@ export default function ProjectDetailClient({ project }: Props) {
         </div>
       </header>
 
-      <main className="pd-main">
+      <main className="pd-main" id="main-content">
         {/* Left sidebar */}
         <aside className="pd-sidebar">
           <div className="pd-sidebar-sticky">
@@ -151,7 +146,7 @@ export default function ProjectDetailClient({ project }: Props) {
             </div>
 
             {/* Keyboard hint */}
-            {mounted && (prevProject || nextProject) && (
+            {(prevProject || nextProject) && (
               <p className="pd-kb-hint">
                 <i className="fas fa-keyboard" />
                 Use ← → keys to navigate

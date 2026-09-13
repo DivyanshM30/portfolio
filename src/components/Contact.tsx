@@ -81,15 +81,15 @@ export default function Contact() {
     return (
         <section className="section contact" id="contact">
             <div className="container">
-                <h2 className="section-title">Get In Touch</h2>
+                <p className="eyebrow">05 / WHAT’S NEXT?</p>
+                <h2 className="section-title">Let’s build <em>something.</em></h2>
                 <div className="contact-content">
                     <div className="contact-info">
                         <h3>Let&apos;s Start a Conversation</h3>
                         <p>
-                            Whether you&apos;re a recruiter looking for a passionate developer, a fellow student
-                            wanting to collaborate, or someone who just wants to chat about technology, I&apos;d love
-                            to hear from you. I&apos;m actively seeking internship opportunities at product-based
-                            companies.
+                            Have a product to build, an engineering challenge to explore, or an opportunity
+                            worth talking about? I&apos;d love to hear from you. I&apos;m currently an SDE Intern
+                            at PGAGI Consultancy and always happy to connect with thoughtful teams and fellow builders.
                         </p>
                         <div className="contact-links">
                             <a href="mailto:divyanshm.code@gmail.com" className="contact-link">
@@ -135,7 +135,7 @@ export default function Contact() {
                         <div className="form-header">
                             <h3 className="form-title">Send a Message</h3>
                             <p className="form-subtitle">
-                                Share a bit about who you are and what you&apos;d like to talk about — internships,
+                                Share a bit about who you are and what you&apos;d like to talk about: internships,
                                 collaborations, or anything tech. I usually reply within 24 hours.
                             </p>
                         </div>
@@ -197,12 +197,12 @@ export default function Contact() {
                             </div>
                             <button
                                 type="submit"
-                                className={`btn btn-primary ${isLoading ? 'loading' : ''}`}
+                                className="submit-btn"
                                 id="submitBtn"
                                 disabled={isLoading}
                             >
                                 <i className="fas fa-paper-plane"></i>
-                                <span className="btn-text">Send Message</span>
+                                <span className="btn-text">{isLoading ? 'Sending…' : 'Send message'}</span>
                             </button>
                         </form>
                     </div>

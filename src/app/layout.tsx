@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
   description:
-    'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+    'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
   authors: [{ name: 'Divyansh Mishra', url: 'https://github.com/DivyanshM30' }],
   metadataBase: new URL('https://divyanshm.dev'),
   alternates: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
-      'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+      'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
     url: 'https://divyanshm.dev',
     siteName: 'Divyansh Mishra Portfolio',
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
-      'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+      'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
     images: ['/og-image.png?v=3'],
   },
   robots: {
@@ -81,7 +81,11 @@ export default function RootLayout({
     name: 'Divyansh Mishra',
     url: 'https://divyanshm.dev',
     image: 'https://divyanshm.dev/profile.png',
-    jobTitle: 'Software Engineer & Full-Stack Developer',
+    jobTitle: 'Software Development Engineer Intern',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'PGAGI Consultancy Pvt. Ltd.',
+    },
     alumniOf: {
       '@type': 'EducationalOrganization',
       name: 'Vellore Institute of Technology',
@@ -138,6 +142,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${spaceGrotesk.variable} ${archivo.variable} ${jetbrainsMono.variable}`}>
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <ThemeProvider>
           <ScrollProgress />
           {children}
