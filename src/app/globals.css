@@ -1,4 +1,14 @@
 /* Portfolio design system: warm paper, ink, and vermilion. */
+.not-found-page { min-height: 100svh; display: flex; flex-direction: column; }
+.not-found-header { min-height: 88px; display: flex; align-items: center; justify-content: space-between; gap: 20px; border-bottom: 1px solid var(--border-color); }
+.not-found-header .eyebrow { margin: 0; }
+.not-found-main { flex: 1; padding: 48px 0 64px; text-align: center; }
+.not-found-art { display: flex; align-items: center; justify-content: center; gap: .07em; font-family: var(--font-archivo), sans-serif; font-size: clamp(100px, 15vw, 190px); font-weight: 500; line-height: 1; letter-spacing: -.08em; margin-bottom: 30px; }
+.not-found-orbit { color: var(--accent-color); font-size: .82em; letter-spacing: 0; }
+.not-found-main h1 { font-size: clamp(42px, 6vw, 76px); }
+.not-found-description { max-width: 400px; margin: 24px auto 0; color: var(--text-secondary); }
+.not-found-actions { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 20px 28px; margin-top: 30px; }
+.not-found-footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 24px 0; border-top: 1px solid var(--border-color); color: var(--text-secondary); font-size: 10px; }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 :root { --bg-light: #f8f7f3; --bg-white: #ffffff; --text-primary: #242621; --text-secondary: #6a6b63; --border-color: #ddded5; --accent-color: #c44426; --primary-color: #242621; --soft: #eeeee6; --nav-bg: #f8f7f3ed; }
 [data-theme="dark"] { --bg-light: #1d211d; --bg-white: #252a24; --text-primary: #f4f2e8; --text-secondary: #b1b5a9; --border-color: #41483e; --accent-color: #f08b68; --primary-color: #f4f2e8; --soft: #272d26; --nav-bg: #1d211ded; }
