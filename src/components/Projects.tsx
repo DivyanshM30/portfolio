@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { projects } from '@/lib/projects';
+import { portfolioProjects as projects } from '@/lib/projects';
 
 function ProjectVisual({ slug }: { slug: string }) {
   if (slug === 'quizforge') return <div className="project-art quiz-art" aria-hidden="true"><div className="mock-window"><div className="mock-top"><b>✳ QuizForge</b><span>YOUR STUDY SIDEKICK</span></div><div className="quiz-progress"><span /></div><small>QUESTION 04 / 10</small><h4>A little practice.<br />A lot more confidence.</h4><div className="quiz-option">A <span>Turn your notes into knowledge</span><span>○</span></div><div className="quiz-option selected">B <span>Make every study session count</span><span>✓</span></div><div className="mock-bottom">Powered by curiosity. And AI. <span>Next question →</span></div></div><span className="art-label">LEARN. PRACTICE. REPEAT.</span></div>;
@@ -7,7 +7,7 @@ function ProjectVisual({ slug }: { slug: string }) {
   return <div className="project-art wellbeing-art" aria-hidden="true"><div className="wellbeing-window"><div className="mock-top"><b>◒ wellbeing</b><span>YOUR DIGITAL DAY</span></div><h4>Less scrolling.<br />More living.</h4><div className="chart-bars">{[35, 62, 46, 85, 57, 42, 70, 53, 90, 65, 48, 32].map((h, i) => <span key={i} style={{ height: `${h}%` }} />)}</div><div className="mock-bottom">Understand your habits. Find your balance.</div></div></div>;
 }
 export default function Projects() {
-  const featured = [projects[1], projects[2], projects[0]];
+  const featured = projects.slice(0, 3);
   return <section className="section projects" id="projects"><div className="container">
     <div className="section-heading"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Built with purpose<span className="accent">.</span></h2></div><p>A few things I’ve brought to life.<br />From the first idea to the final detail.</p></div>
     <div className="featured-projects">{featured.map((p, i) => <article className={`featured-project featured-${i}`} key={p.slug}><Link className="project-visual-link" href={`/projects/${p.slug}`} aria-label={`Explore ${p.title}`}><ProjectVisual slug={p.slug} /><span className="project-open" aria-hidden="true">↗</span></Link><div className="project-meta"><span>0{i + 1} / {i === 0 ? 'AI & FULL-STACK' : i === 1 ? 'WEB APPLICATION' : 'PYTHON & MACHINE LEARNING'}</span><span>2025</span></div><Link className="project-title-link" href={`/projects/${p.slug}`}><h3>{p.title}</h3><span>↗</span></Link><p className="project-summary">{p.shortDescription}</p><div className="project-tags">{p.tech.slice(0, 3).map(t => <span key={t}>{t}</span>)}</div></article>)}</div>

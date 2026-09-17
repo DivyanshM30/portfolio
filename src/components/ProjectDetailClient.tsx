@@ -1,6 +1,6 @@
 'use client';
 
-import { Project, projects } from '@/lib/projects';
+import { Project, portfolioProjects as projects } from '@/lib/projects';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useEffect, useCallback } from 'react';
@@ -51,7 +51,7 @@ export default function ProjectDetailClient({ project }: Props) {
               <Link
                 href={`/projects/${prevProject.slug}`}
                 className="pd-nav-arrow"
-                title={prevProject.title}
+                title={prevProject.title} aria-label={`Previous project: ${prevProject.title}`}
               >
                 <i className="fas fa-chevron-left" />
                 <span className="pd-nav-arrow-label">{prevProject.title}</span>
@@ -63,14 +63,14 @@ export default function ProjectDetailClient({ project }: Props) {
             )}
 
             <span className="pd-project-counter">
-              {String(project.id).padStart(2, '0')}&nbsp;/&nbsp;{String(projects.length).padStart(2, '0')}
+              {String(currentIndex + 1).padStart(2, '0')}&nbsp;/&nbsp;{String(projects.length).padStart(2, '0')}
             </span>
 
             {nextProject ? (
               <Link
                 href={`/projects/${nextProject.slug}`}
                 className="pd-nav-arrow"
-                title={nextProject.title}
+                title={nextProject.title} aria-label={`Next project: ${nextProject.title}`}
               >
                 <span className="pd-nav-arrow-label">{nextProject.title}</span>
                 <i className="fas fa-chevron-right" />
@@ -90,7 +90,7 @@ export default function ProjectDetailClient({ project }: Props) {
           <div className="pd-sidebar-sticky">
             {/* Project identity */}
             <div className="pd-identity">
-              <p className="pd-num">{String(project.id).padStart(2, '0')}</p>
+              <p className="pd-num">{String(currentIndex + 1).padStart(2, '0')}</p>
               <h1 className="pd-title">{project.title}</h1>
               <p className="pd-short-desc">{project.shortDescription}</p>
             </div>

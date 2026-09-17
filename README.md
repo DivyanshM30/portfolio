@@ -101,7 +101,7 @@ Update information in the relevant source files:
 - Contact and social links → `src/components/Contact.tsx`, `src/components/Footer.tsx`
 - Site-wide SEO → `src/app/layout.tsx`
 
-The resume URL can be set with `NEXT_PUBLIC_RESUME_URL`; the hero uses its built-in Google Drive URL when the variable is absent.
+Set `NEXT_PUBLIC_RESUME_URL` to a publicly accessible resume URL and rebuild. Verify it in a signed-out browser. When unset, the hero uses the public Google Drive resume linked in `src/components/Hero.tsx`. An existing deployment override must also be updated if it points to an older private file.
 
 ### Contact Form
 

@@ -200,6 +200,8 @@ export const projects: Project[] = [
   },
 ];
 
+export const portfolioProjects = [projects[1], projects[2], projects[0], ...projects.slice(3)];
+
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);
 }

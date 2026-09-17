@@ -1,5 +1,5 @@
 import Image from 'next/image';
-const resumeUrl = process.env.NEXT_PUBLIC_RESUME_URL || 'https://drive.google.com/file/d/1m3e7TsVruyN8xYYz04arEtYiOlxkeGwJ/view';
+const resumeUrl = process.env.NEXT_PUBLIC_RESUME_URL?.trim() || 'https://drive.google.com/file/d/11M5mANu3dnpx4D--5u1w8h-oImWyNDVR/view?usp=drive_link';
 
 export default function Hero() {
   return <section className="hero" id="home"><div className="container">
