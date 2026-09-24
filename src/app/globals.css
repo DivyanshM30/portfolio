@@ -175,6 +175,10 @@ em { font-family: Georgia, 'Times New Roman', serif; font-weight: 400; color: va
 .form-message { padding: 12px; margin-bottom: 16px; font-size: 12px; border: 1px solid currentColor; }
 .form-message.error { color: var(--accent-color); }
 .form-message.success { color: var(--text-primary); }
+.field-error { margin-top: 6px; color: var(--accent-color); font-size: 12px; }
+.form-group [aria-invalid="true"] { border-bottom-color: var(--accent-color); }
+.form-group input:disabled, .form-group textarea:disabled { opacity: .6; cursor: wait; }
+.form-message a { text-decoration: underline; }
 .footer { padding: 45px 0 25px; }
 .footer-top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 35px; }
 .footer-top p { font-size: 13px; color: var(--text-secondary); }

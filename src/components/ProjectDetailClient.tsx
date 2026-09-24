@@ -19,10 +19,17 @@ export default function ProjectDetailClient({ project }: Props) {
   // Keyboard navigation
   const handleKey = useCallback(
     (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.isComposing) return;
+      const target = e.target;
+      if (target instanceof HTMLElement && (
+        target.isContentEditable || target.closest('input, textarea, select, [role="textbox"]')
+      )) return;
       if (e.key === 'ArrowLeft' && prevProject) {
+        e.preventDefault();
         router.push(`/projects/${prevProject.slug}`);
       }
       if (e.key === 'ArrowRight' && nextProject) {
+        e.preventDefault();
         router.push(`/projects/${nextProject.slug}`);
       }
     },
