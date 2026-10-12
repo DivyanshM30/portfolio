@@ -15,7 +15,7 @@ export default function Experience() {
           <article className="career-role current-role">
             <div className="career-meta">
               <span className="role-status">CURRENT ROLE</span>
-              <p>Jun 2026 – Present</p>
+              <p>Jun 2026 – Oct 2026</p>
               <p className="career-company">PGAGI Consultancy Pvt. Ltd.</p>
             </div>
             <div className="career-content">

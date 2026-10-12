@@ -6,8 +6,8 @@ export default function Hero() {
     <div className="hero-eyebrow"><span>SOFTWARE ENGINEER & CREATIVE PROBLEM SOLVER</span><span className="availability"><span /> Open to opportunities</span></div>
     <div className="hero-grid"><div className="hero-copy">
       <p className="hello">Hey, I’m Divyansh <span aria-hidden="true">↗</span></p>
-      <h1>Thoughtful code.<br />Real-world<br /><em>impact.</em><span className="hero-star" aria-hidden="true">✳</span></h1>
-      <p className="hero-description">I build software people use, from real-time calling to responsive web experiences. Currently shipping production features as an SDE Intern at PGAGI Consultancy.</p>
+      <h1>Thoughtful code.<br />Real-world<br /><em>impact.</em><span className="hero-star" aria-hidden="true"></span></h1>
+      <p className="hero-description">I build software people use, from real-time calling to responsive web experiences. Currently shipping production features as a SDE Intern.</p>
       <div className="hero-actions"><a className="button primary" href="#projects">Explore my work <span>↗</span></a><a className="text-link" href={resumeUrl} target="_blank" rel="noopener noreferrer">View résumé <span>↗</span></a></div>
     </div><div className="portrait-composition">
       <div className="portrait-note">A little curiosity.<br />A lot of building.</div>
