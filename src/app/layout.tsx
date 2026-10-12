@@ -26,7 +26,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
   description:
-    'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+    'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
   authors: [{ name: 'Divyansh Mishra', url: 'https://github.com/DivyanshM30' }],
   metadataBase: new URL('https://divyanshm.dev'),
   alternates: {
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
-      'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+      'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
     url: 'https://divyanshm.dev',
     siteName: 'Divyansh Mishra Portfolio',
     images: [
@@ -54,7 +54,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Divyansh Mishra | Software Engineer & Full Stack Developer',
     description:
-      'Portfolio of Divyansh Mishra — Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
+      'Portfolio of Divyansh Mishra, Software Engineer, Full Stack Developer, and problem solver specializing in React, Next.js, Node.js, Python, and scalable web applications.',
     images: ['/og-image.png?v=3'],
   },
   robots: {
@@ -81,7 +81,11 @@ export default function RootLayout({
     name: 'Divyansh Mishra',
     url: 'https://divyanshm.dev',
     image: 'https://divyanshm.dev/profile.png',
-    jobTitle: 'Software Engineer & Full-Stack Developer',
+    jobTitle: 'Software Development Engineer Intern',
+    worksFor: {
+      '@type': 'Organization',
+      name: 'PGAGI Consultancy Pvt. Ltd.',
+    },
     alumniOf: {
       '@type': 'EducationalOrganization',
       name: 'Vellore Institute of Technology',
@@ -106,7 +110,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Font Awesome for icons */}
         <link
@@ -119,48 +123,26 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {/* Runs before paint: marks the document as JS-capable (which enables the
-            scroll-reveal animations' hidden starting state) and applies a saved
-            preference over the server-rendered dark default so colours never flash. */}
+            scroll-reveal animations' hidden starting state) and applies the saved
+            theme so colours never flash. */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
-                var root = document.documentElement;
-                root.classList.add('js');
+                document.documentElement.classList.add('js');
                 try {
                   var theme = localStorage.getItem('theme');
                   if (theme === 'light' || theme === 'dark') {
-                    root.dataset.theme = theme;
+                    document.documentElement.dataset.theme = theme;
                   }
                 } catch (e) {}
-
-                function syncThemeToggle() {
-                  var toggle = document.querySelector('[data-theme-toggle]');
-                  if (!toggle) return false;
-
-                  var activeTheme = root.dataset.theme === 'light' ? 'light' : 'dark';
-                  var isDark = activeTheme === 'dark';
-                  var label = isDark ? 'Switch to light mode' : 'Switch to dark mode';
-
-                  toggle.dataset.themeState = activeTheme;
-                  toggle.setAttribute('aria-checked', String(isDark));
-                  toggle.setAttribute('aria-label', label);
-                  toggle.setAttribute('title', label);
-                  return true;
-                }
-
-                if (!syncThemeToggle()) {
-                  var observer = new MutationObserver(function() {
-                    if (syncThemeToggle()) observer.disconnect();
-                  });
-                  observer.observe(root, { childList: true, subtree: true });
-                }
               })();
             `,
           }}
         />
       </head>
       <body className={`${spaceGrotesk.variable} ${archivo.variable} ${jetbrainsMono.variable}`}>
+        <a className="skip-link" href="#main-content">Skip to content</a>
         <ThemeProvider>
           <ScrollProgress />
           {children}

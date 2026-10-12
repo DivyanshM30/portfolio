@@ -1,11 +1,10 @@
 'use client';
 
-import { createContext, useCallback, useContext, useSyncExternalStore, ReactNode } from 'react';
+import { createContext, useCallback, useContext, ReactNode } from 'react';
 
 type Theme = 'light' | 'dark';
 
 interface ThemeContextType {
-    theme: Theme;
     toggleTheme: () => void;
 }
 
@@ -24,48 +23,26 @@ interface ThemeProviderProps {
 }
 
 /**
- * Reads the theme that is currently in effect. The server renders dark mode and
- * the inline script in layout.tsx applies any saved preference before paint.
- * Falling back to dark keeps the default deterministic if the attribute is ever
- * removed by third-party code.
+ * Reads the theme that is currently in effect. `data-theme` is set pre-paint by
+ * the inline script in layout.tsx when the visitor has an explicit preference;
+ * when it is absent the CSS media queries follow the system, so the system
+ * preference is the effective theme.
  */
 function getEffectiveTheme(): Theme {
     const explicit = document.documentElement.dataset.theme;
     if (explicit === 'light' || explicit === 'dark') {
         return explicit;
     }
-    return 'dark';
-}
-
-const THEME_CHANGE_EVENT = 'portfolio-theme-change';
-
-function subscribeToTheme(onStoreChange: () => void) {
-    window.addEventListener(THEME_CHANGE_EVENT, onStoreChange);
-    window.addEventListener('storage', onStoreChange);
-
-    return () => {
-        window.removeEventListener(THEME_CHANGE_EVENT, onStoreChange);
-        window.removeEventListener('storage', onStoreChange);
-    };
-}
-
-function getHydrationTheme(): Theme {
-    if (typeof document !== 'undefined') {
-        return getEffectiveTheme();
-    }
-
-    return 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
 }
 
 /**
- * The `data-theme` attribute on <html> is the source of truth. The external
- * store exposes it to controls that need semantic state while keeping the full
- * tree server-renderable. During hydration, the snapshot reads the theme that
- * the pre-paint script has already applied.
+ * The `data-theme` attribute on <html> is the single source of truth: CSS reads
+ * it directly (including the theme-toggle icon), so there is deliberately no
+ * React state mirroring it. That keeps the whole tree server-renderable and
+ * avoids a hydration pass that could disagree with the pre-paint script.
  */
 export function ThemeProvider({ children }: ThemeProviderProps) {
-    const theme = useSyncExternalStore(subscribeToTheme, getEffectiveTheme, getHydrationTheme);
-
     const toggleTheme = useCallback(() => {
         const next: Theme = getEffectiveTheme() === 'dark' ? 'light' : 'dark';
         document.documentElement.dataset.theme = next;
@@ -74,12 +51,10 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
         } catch {
             // Private-mode / storage-disabled: the toggle still works for this page view.
         }
-
-        window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
     }, []);
 
     return (
-        <ThemeContext.Provider value={{ theme, toggleTheme }}>
+        <ThemeContext.Provider value={{ toggleTheme }}>
             {children}
         </ThemeContext.Provider>
     );

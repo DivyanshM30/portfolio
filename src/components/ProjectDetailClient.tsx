@@ -1,14 +1,45 @@
-import { Project, projects } from '@/lib/projects';
+'use client';
+
+import { Project, portfolioProjects as projects } from '@/lib/projects';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect, useCallback } from 'react';
 
 interface Props {
   project: Project;
 }
 
-export default function ProjectDetail({ project }: Props) {
+export default function ProjectDetailClient({ project }: Props) {
+  const router = useRouter();
+
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
   const prevProject = currentIndex > 0 ? projects[currentIndex - 1] : null;
   const nextProject = currentIndex < projects.length - 1 ? projects[currentIndex + 1] : null;
+
+  // Keyboard navigation
+  const handleKey = useCallback(
+    (e: KeyboardEvent) => {
+      if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey || e.shiftKey || e.isComposing) return;
+      const target = e.target;
+      if (target instanceof HTMLElement && (
+        target.isContentEditable || target.closest('input, textarea, select, [role="textbox"]')
+      )) return;
+      if (e.key === 'ArrowLeft' && prevProject) {
+        e.preventDefault();
+        router.push(`/projects/${prevProject.slug}`);
+      }
+      if (e.key === 'ArrowRight' && nextProject) {
+        e.preventDefault();
+        router.push(`/projects/${nextProject.slug}`);
+      }
+    },
+    [prevProject, nextProject, router]
+  );
+
+  useEffect(() => {
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [handleKey]);
 
   return (
     <div className="pd-root">
@@ -27,7 +58,7 @@ export default function ProjectDetail({ project }: Props) {
               <Link
                 href={`/projects/${prevProject.slug}`}
                 className="pd-nav-arrow"
-                title={prevProject.title}
+                title={prevProject.title} aria-label={`Previous project: ${prevProject.title}`}
               >
                 <i className="fas fa-chevron-left" />
                 <span className="pd-nav-arrow-label">{prevProject.title}</span>
@@ -39,14 +70,14 @@ export default function ProjectDetail({ project }: Props) {
             )}
 
             <span className="pd-project-counter">
-              {String(project.id).padStart(2, '0')}&nbsp;/&nbsp;{String(projects.length).padStart(2, '0')}
+              {String(currentIndex + 1).padStart(2, '0')}&nbsp;/&nbsp;{String(projects.length).padStart(2, '0')}
             </span>
 
             {nextProject ? (
               <Link
                 href={`/projects/${nextProject.slug}`}
                 className="pd-nav-arrow"
-                title={nextProject.title}
+                title={nextProject.title} aria-label={`Next project: ${nextProject.title}`}
               >
                 <span className="pd-nav-arrow-label">{nextProject.title}</span>
                 <i className="fas fa-chevron-right" />
@@ -60,13 +91,13 @@ export default function ProjectDetail({ project }: Props) {
         </div>
       </header>
 
-      <main className="pd-main">
+      <main className="pd-main" id="main-content">
         {/* Left sidebar */}
         <aside className="pd-sidebar">
           <div className="pd-sidebar-sticky">
             {/* Project identity */}
             <div className="pd-identity">
-              <p className="pd-num">{String(project.id).padStart(2, '0')}</p>
+              <p className="pd-num">{String(currentIndex + 1).padStart(2, '0')}</p>
               <h1 className="pd-title">{project.title}</h1>
               <p className="pd-short-desc">{project.shortDescription}</p>
             </div>
@@ -121,6 +152,13 @@ export default function ProjectDetail({ project }: Props) {
               )}
             </div>
 
+            {/* Keyboard hint */}
+            {(prevProject || nextProject) && (
+              <p className="pd-kb-hint">
+                <i className="fas fa-keyboard" />
+                Use ← → keys to navigate
+              </p>
+            )}
           </div>
         </aside>
 

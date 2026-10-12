@@ -2,7 +2,8 @@ export default function Skills() {
     return (
         <section className="section skills dot-grid" id="skills">
             <div className="container">
-                <h2 className="section-title">Technical Skills</h2>
+                <p className="eyebrow">03 / MY TOOLKIT</p>
+                <h2 className="section-title">The tools behind the ideas<span className="accent">.</span></h2>
 
                 {/* Skill Categories with Visual Tags */}
                 <div className="skills-container">

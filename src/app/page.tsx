@@ -13,12 +13,13 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      <main id="main-content">
       <Hero />
       <SectionObserver>
-        <About />
+        <Projects />
       </SectionObserver>
       <SectionObserver>
-        <Projects />
+        <About />
       </SectionObserver>
       <SectionObserver>
         <Skills />
@@ -29,6 +30,7 @@ export default function Home() {
       <SectionObserver>
         <Contact />
       </SectionObserver>
+      </main>
       <Footer />
       <ScrollToTop />
     </>

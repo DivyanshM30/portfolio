@@ -40,8 +40,8 @@ export const projects: Project[] = [
       'The feedback engine generates personalized, data-driven suggestions - nudging users toward mindful technology usage by surfacing insights like "You\'ve spent 3x more time on social apps vs. productive tools this week." The UI is built with Tkinter and Matplotlib, rendering live usage graphs and historical trend charts directly within the application.',
     ],
     tech: ['Python', 'Tkinter', 'Matplotlib', 'scikit-learn', 'K-Means', 'SQLite'],
-    timeline: 'January 2025 - March 2025',
-    liveUrl: 'https://divyanshm30.github.io/digital-wellbeing-tracker/',
+    timeline: 'January 2025 - April 2025',
+    liveUrl: 'https://digital-wellbeing-tracker.vercel.app/',
     githubUrl: 'https://github.com/divyanshm30/digital-wellbeing-tracker',
     highlights: [
       'Real-time system-level activity monitoring across all applications',
@@ -80,7 +80,7 @@ export const projects: Project[] = [
       'Real-time scoring, performance analytics, and revision-focused feedback create a personalized prep experience that adapts to each student\'s learning patterns.',
     ],
     tech: ['Next.js', 'TypeScript', 'Gemini API', 'Document Parsing', 'PDF.js / LangChain'],
-    timeline: 'March 2025 - May 2025',
+    timeline: 'Mar 2026 - Jun 2026',
     liveUrl: 'https://thequizforge.vercel.app/',
     githubUrl: 'https://github.com/DivyanshM30/QuizForge',
     highlights: [
@@ -116,7 +116,7 @@ export const projects: Project[] = [
       'Built with Next.js and Supabase, the app features seamless authentication, real-time data sync, and fluid animations powered by Framer Motion. State management via Zustand ensures a smooth, responsive experience.',
     ],
     tech: ['Next.js', 'TypeScript', 'Supabase (Auth & DB)', 'Zustand', 'Framer Motion'],
-    timeline: 'April 2025 - May 2025',
+    timeline: 'Jan 2026 - Aug 2026',
     liveUrl: 'https://themindpalette.vercel.app/',
     githubUrl: 'https://github.com/DivyanshM30/mindpalette',
     highlights: [
@@ -195,7 +195,7 @@ export const projects: Project[] = [
       'Deployed on AWS, the service ensures scalable, low-latency updates for routing calculations, handling concurrent requests efficiently through a well-architected Flask backend.',
     ],
     tech: ['Python', 'Flask', 'Maps API', 'AWS (Deployment)'],
-    timeline: 'August 2024 - October 2024',
+    timeline: 'August 2025 - October 2025',
     githubUrl: 'https://github.com/DivyanshM30/smartroute',
     highlights: [
       'Real-time traffic-aware route optimization',
@@ -255,6 +255,8 @@ export const projects: Project[] = [
     ],
   },
 ];
+
+export const portfolioProjects = [projects[1], projects[2], projects[0], ...projects.slice(3)];
 
 export function getProjectBySlug(slug: string): Project | undefined {
   return projects.find((p) => p.slug === slug);

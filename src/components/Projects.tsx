@@ -1,84 +1,16 @@
 import Link from 'next/link';
-import { projects } from '@/lib/projects';
+import { portfolioProjects as projects } from '@/lib/projects';
 
+function ProjectVisual({ slug }: { slug: string }) {
+  if (slug === 'quizforge') return <div className="project-art quiz-art" aria-hidden="true"><div className="mock-window"><div className="mock-top"><b>✳ QuizForge</b><span>YOUR STUDY SIDEKICK</span></div><div className="quiz-progress"><span /></div><small>QUESTION 04 / 10</small><h4>A little practice.<br />A lot more confidence.</h4><div className="quiz-option">A <span>Turn your notes into knowledge</span><span>○</span></div><div className="quiz-option selected">B <span>Make every study session count</span><span>✓</span></div><div className="mock-bottom">Powered by curiosity. And AI. <span>Next question →</span></div></div><span className="art-label">LEARN. PRACTICE. REPEAT.</span></div>;
+  if (slug === 'mindpalette') return <div className="project-art mood-art" aria-hidden="true"><div className="mood-window"><div className="mock-top"><b>mindpalette ✿</b><span>A LITTLE CHECK-IN</span></div><h4>Every feeling<br />has a color.</h4><div className="mood-grid">{Array.from({ length: 91 }, (_, i) => <span key={i} style={{ background: ['#e6adc1', '#e7d695', '#b7c6a7', '#c8b7da', '#f0d7c9'][(i * 7 + Math.floor(i / 5)) % 5] }} />)}</div><div className="mock-bottom">A year of being beautifully human. <span>✿</span></div></div></div>;
+  return <div className="project-art wellbeing-art" aria-hidden="true"><div className="wellbeing-window"><div className="mock-top"><b>◒ wellbeing</b><span>YOUR DIGITAL DAY</span></div><h4>Less scrolling.<br />More living.</h4><div className="chart-bars">{[35, 62, 46, 85, 57, 42, 70, 53, 90, 65, 48, 32].map((h, i) => <span key={i} style={{ height: `${h}%` }} />)}</div><div className="mock-bottom">Understand your habits. Find your balance.</div></div></div>;
+}
 export default function Projects() {
-    return (
-        <section className="section projects" id="projects">
-            <div className="container">
-                <h2 className="section-title">Featured Projects</h2>
-                <div className="projects-grid">
-                    {projects.map((project, index) => (
-                        <div
-                            key={project.slug}
-                            className="project-card stagger-item"
-                            style={{ '--stagger-index': index } as React.CSSProperties}
-                        >
-                            <div className="project-header">
-                                <div className="project-number">
-                                    {String(project.id).padStart(2, '0')}
-                                </div>
-                                <h3 className="project-title">{project.title}</h3>
-                            </div>
-                            <p className="project-description">
-                                {project.cardDescription.map((segment, segmentIndex) =>
-                                    segment.emphasis ? (
-                                        <strong key={segmentIndex}>{segment.text}</strong>
-                                    ) : (
-                                        segment.text
-                                    )
-                                )}
-                            </p>
-                            <div className="project-tech">
-                                {project.tech.map((technology) => (
-                                    <span key={technology} className="tech-tag">
-                                        {technology}
-                                    </span>
-                                ))}
-                            </div>
-                            <div className="project-links">
-                                {project.liveUrl && (
-                                    <a
-                                        href={project.liveUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="project-link"
-                                    >
-                                        <span>Live Demo</span>
-                                        <i className="fas fa-arrow-right" />
-                                    </a>
-                                )}
-
-                                {project.githubUrl && (
-                                    <a
-                                        href={project.githubUrl}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="project-link secondary"
-                                        aria-label={`View ${project.title} on GitHub`}
-                                    >
-                                        <i className="fab fa-github" />
-                                    </a>
-                                )}
-
-                                {project.isPrivate && (
-                                    <span
-                                        className="project-link"
-                                        style={{ opacity: 0.5, cursor: 'default' }}
-                                    >
-                                        <span>Private Repository</span>
-                                        <i className="fas fa-lock" />
-                                    </span>
-                                )}
-
-                                <Link href={`/projects/${project.slug}`} className="project-link details">
-                                    <span>Details</span>
-                                    <i className="fas fa-arrow-right" />
-                                </Link>
-                            </div>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
+  const featured = projects.slice(0, 3);
+  return <section className="section projects" id="projects"><div className="container">
+    <div className="section-heading"><div><p className="eyebrow">01 / SELECTED WORK</p><h2>Built with purpose<span className="accent">.</span></h2></div><p>A few things I’ve brought to life.<br />From the first idea to the final detail.</p></div>
+    <div className="featured-projects">{featured.map((p, i) => <article className={`featured-project featured-${i}`} key={p.slug}><Link className="project-visual-link" href={`/projects/${p.slug}`} aria-label={`Explore ${p.title}`}><ProjectVisual slug={p.slug} /><span className="project-open" aria-hidden="true">↗</span></Link><div className="project-meta"><span>0{i + 1} / {i === 0 ? 'AI & FULL-STACK' : i === 1 ? 'WEB APPLICATION' : 'PYTHON & MACHINE LEARNING'}</span><span>2026</span></div><Link className="project-title-link" href={`/projects/${p.slug}`}><h3>{p.title}</h3><span>↗</span></Link><p className="project-summary">{p.shortDescription}</p><div className="project-tags">{p.tech.slice(0, 3).map(t => <span key={t}>{t}</span>)}</div></article>)}</div>
+    <div className="more-work"><div className="more-work-heading"><h3>More explorations</h3><span>ALWAYS BUILDING, ALWAYS LEARNING</span></div>{projects.slice(3).map((p, i) => <Link className="project-row" key={p.slug} href={`/projects/${p.slug}`}><span className="row-number">0{i + 4}</span><h3>{p.slug === 'ai-news-summarizer' ? 'AI News Summarizer' : p.title}</h3><span className="row-tech">{p.tech.slice(0, 2).join(' / ')}</span><span>↗</span></Link>)}</div>
+  </div></section>;
 }
