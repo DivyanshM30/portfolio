@@ -3,6 +3,10 @@ export interface Project {
   slug: string;
   title: string;
   shortDescription: string;
+  cardDescription: Array<{
+    text: string;
+    emphasis?: boolean;
+  }>;
   fullDescription: string[];
   tech: string[];
   timeline: string;
@@ -21,6 +25,15 @@ export const projects: Project[] = [
     title: 'Digital Wellbeing Tracker',
     shortDescription:
       'An intelligent, desktop-based productivity application that logs real-time system and application activity.',
+    cardDescription: [
+      {
+        text: 'An intelligent, desktop-based productivity application that logs real-time system and application activity. Integrated a ',
+      },
+      { text: 'K-Means clustering algorithm', emphasis: true },
+      {
+        text: ' using Python (scikit-learn) to categorize digital activity profiles and detect addictive behavior patterns, generating data-driven feedback to encourage mindful technology usage.',
+      },
+    ],
     fullDescription: [
       'The Digital Wellbeing Tracker is a desktop-native productivity application built to give users genuine insight into their digital habits. Unlike browser extensions or passive loggers, this tool runs at the system level - monitoring active application windows in real-time, tracking session durations, and categorizing usage patterns automatically.',
       'At its core, the project integrates a K-Means clustering algorithm using scikit-learn to group behavioral profiles dynamically. Each user\'s activity data is processed into feature vectors (session lengths, app categories, time-of-day distributions) which are then clustered to detect addictive or unhealthy usage patterns without relying on hardcoded rules.',
@@ -52,6 +65,15 @@ export const projects: Project[] = [
     title: 'QuizForge',
     shortDescription:
       'An AI-powered assessment platform that transforms study materials into topic-wise timed MCQ quizzes with instant evaluation.',
+    cardDescription: [
+      {
+        text: 'An AI-powered assessment platform that transforms study materials such as PDFs, PPTs, and documents into topic-wise timed MCQ quizzes with instant evaluation and detailed explanations. Built an end-to-end document processing pipeline for text extraction and AI-driven question generation using the ',
+      },
+      { text: 'Google Gemini API', emphasis: true },
+      {
+        text: ', with configurable settings, real-time scoring, performance analytics, and revision-focused feedback to create a personalized prep experience.',
+      },
+    ],
     fullDescription: [
       'QuizForge is an end-to-end AI-powered assessment platform that transforms raw study materials - PDFs, PPTs, and documents - into structured, topic-wise timed MCQ quizzes with instant evaluation and detailed explanations.',
       'The platform features a robust document processing pipeline for text extraction and AI-driven question generation using the Google Gemini API. Users can configure quiz settings including difficulty level, number of questions, and time limits.',
@@ -83,6 +105,11 @@ export const projects: Project[] = [
     title: 'MindPalette',
     shortDescription:
       'A beautifully designed, cloud-synced mood tracking application that turns daily feelings into an expressive visual story.',
+    cardDescription: [
+      {
+        text: 'A beautifully designed, cloud-synced mood tracking application that turns daily feelings into an expressive visual story. Instead of logging emotions in traditional spreadsheets, MindPalette transforms your year into a gentle, aesthetic grid canvas—where each day becomes a brushstroke of color, emotion, and personal reflection.',
+      },
+    ],
     fullDescription: [
       'MindPalette is a cloud-synced mood tracking application that transforms daily emotional check-ins into a beautiful, expressive visual story.',
       'Instead of logging emotions in traditional spreadsheets, MindPalette transforms your year into a gentle, aesthetic grid canvas - where each day becomes a brushstroke of color, emotion, and personal reflection.',
@@ -114,6 +141,13 @@ export const projects: Project[] = [
     title: 'Blockchain-based Decentralized VPN',
     shortDescription:
       'A secure, decentralized networking protocol leveraging blockchain technology for censorship-resistant browsing.',
+    cardDescription: [
+      { text: 'A secure, decentralized networking protocol leveraging ' },
+      { text: 'blockchain technology', emphasis: true },
+      {
+        text: ' for censorship-resistant browsing. Utilizes peer-to-peer architecture and robust cryptographic encryption to eliminate central single-points-of-failure, ensuring absolute user privacy and trustless node connectivity.',
+      },
+    ],
     fullDescription: [
       'A secure, decentralized networking protocol leveraging blockchain technology for censorship-resistant browsing.',
       'The system utilizes peer-to-peer architecture and robust cryptographic encryption to eliminate central single-points-of-failure, ensuring absolute user privacy and trustless node connectivity.',
@@ -144,6 +178,17 @@ export const projects: Project[] = [
     title: 'Smart Route',
     shortDescription:
       'A cloud-native navigation engine that computes optimized travel routes by evaluating real-time traffic feeds.',
+    cardDescription: [
+      {
+        text: 'A cloud-native navigation engine that computes optimized travel routes by evaluating real-time traffic feeds and pathfinding algorithms. Integrated ',
+      },
+      { text: 'Google Maps API', emphasis: true },
+      { text: ' with graph optimization algorithms, deploying the service to ' },
+      { text: 'AWS', emphasis: true },
+      {
+        text: ' to ensure scalable, low-latency updates for routing calculations.',
+      },
+    ],
     fullDescription: [
       'Smart Route is a cloud-native navigation engine that computes optimized travel routes by evaluating real-time traffic feeds and pathfinding algorithms.',
       'The system integrates Google Maps API with custom graph optimization algorithms to calculate the most efficient routes considering live traffic conditions, road closures, and historical patterns.',
@@ -174,6 +219,17 @@ export const projects: Project[] = [
     title: 'Real-Time AI Based News Summarizer Web App',
     shortDescription:
       'A full-stack web application that fetches and condenses global news into bulleted summaries using the Google Gemini Pro API.',
+    cardDescription: [
+      {
+        text: 'A full-stack, responsive web application that fetches and condenses global news into bulleted summaries using the ',
+      },
+      { text: 'Google Gemini Pro API', emphasis: true },
+      { text: '. Designed a modular ' },
+      { text: 'Flask backend API', emphasis: true },
+      {
+        text: ' and integrated smart token optimization strategies, reducing query latency and API overhead. Added customized category filters (Tech, Business, Science) for personalized user feeds.',
+      },
+    ],
     fullDescription: [
       'A full-stack, responsive web application that fetches and condenses global news into bulleted summaries using the Google Gemini Pro API.',
       'The modular Flask backend API handles news fetching, processing, and AI-powered summarization with smart token optimization strategies that reduce query latency and API overhead.',

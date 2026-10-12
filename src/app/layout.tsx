@@ -132,7 +132,7 @@ export default function RootLayout({
                 document.documentElement.classList.add('js');
                 try {
                   var theme = localStorage.getItem('theme');
-                  if (theme) {
+                  if (theme === 'light' || theme === 'dark') {
                     document.documentElement.dataset.theme = theme;
                   }
                 } catch (e) {}
